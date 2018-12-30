@@ -3,11 +3,15 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { PanelInformacionComponent } from './components/shared/panel-informacion/panel-informacion.component';
+import { FormularioComponent } from './components/formulario/formulario.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    PanelInformacionComponent,
+    FormularioComponent
   ],
   imports: [
     BrowserModule

@@ -1,0 +1,57 @@
+<div class="alert alert-dismissible alert-warning">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <h4 class="alert-heading"> <i class="fas fa-exclamation-circle"></i> Recuerda!</h4>
+    <p class="mb-0">Debes seleccionar un cliente, producto y el número de orén que obtuviste en Bizagi. Estos tres parámetros van a conformar el nombre del archivo.</p>
+</div>
+
+<div class="jumbotron">
+    <h1> <i class="fas fa-file-upload"></i> Subir Archivo </h1>
+    <hr class="my-4">
+    <form class="form-horizontal">
+        <fieldset>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="cliente"> <i class="fas fa-user-alt"></i>  Cliente</label>
+                    <select id="cliente" class="form-control">
+                            <option selected>Seleccionar un Cliente...</option>
+                            <option>Cliente 1</option>
+                            <option>Cliente 2</option>
+                          </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="producto"> <i class="fab fa-product-hunt"></i> Producto</label>
+                    <select id="producto" class="form-control">
+                            <option selected>Seleccionar un  Producto...</option>
+                            <option>Prodcuto 1</option>
+                            <option>Producto 2</option>
+                        </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="orden"> <i class="fas fa-address-card"></i> Número de Ordén</label>
+                    <input type="text" class="form-control" placeholder="123456" id="orden">
+                </div>
+
+                <div class="form-group col-md-8">
+                    <div class="form-group col-md-8 file-path-wrapper">
+                        <label for="archivo"><i class="fas fa-align-justify"></i> Archivo</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="archivo" aria-describedby="archivo">
+                                <label class="custom-file-label" for="archivo">Seleccionar Archivo</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="form-group block-center">
+                <div class="col-lg-10 col-lg-offset-4">
+                    <button type="reset" class="btn btn-primary"> <i class="fas fa-trash-alt"></i> Limpiar Formulario</button>&nbsp;
+                    <button type="submit" class="btn btn-success"> <i class="fas fa-file-upload"></i>  Subir Archivo</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
