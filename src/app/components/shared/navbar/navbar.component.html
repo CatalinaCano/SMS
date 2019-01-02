@@ -9,16 +9,16 @@
 
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#"> <i class="fas fa-file-upload"></i> Subir Archivo</a>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['/inicio']"> <i class="fas fa-file-upload"></i> Subir Archivo</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fas fa-exclamation-circle"></i> Información</a>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['/informacion']"><i class="fas fa-exclamation-circle"></i> Información</a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li class="nav-item">
-                    <a class="nav-link" href="#"> <i class="fas fa-sign-in-alt"></i> Salir</a>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" href="https://www.computec.com/"> <i class="fas fa-sign-in-alt"></i> Salir</a>
                 </li>
 
             </ul>

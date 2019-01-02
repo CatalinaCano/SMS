@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OrdenesService } from '../../services/ordenes.service';
+import { Ordenes } from '../../interfaces/ordenes.interface';
 
 @Component({
   selector: 'app-formulario',
@@ -6,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormularioComponent implements OnInit {
 
-  constructor() { }
-
+  ordenes: Ordenes[] = [];
+  constructor( private _ordenesService: OrdenesService) { }
+  /*
+    El ngOnInit se utiliza cuando la pagina ya esta renderizada, primero se ejecuta el constructor
+  */
   ngOnInit() {
+    this.ordenes = this._ordenesService.getOrdenes();
+    console.log(this.ordenes);
   }
 
 }
