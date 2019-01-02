@@ -1,6 +1,9 @@
+//Modulos
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 //Rutas
 import {APP_ROUTING} from './app.routes';
 
@@ -17,6 +20,8 @@ import { InformacionComponent } from './components/shared/informacion/informacio
 
 
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +34,11 @@ import { InformacionComponent } from './components/shared/informacion/informacio
   ],
   imports: [
     BrowserModule,
-    APP_ROUTING
+    APP_ROUTING,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule
   ],
   providers: [
     OrdenesService

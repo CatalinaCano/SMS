@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrdenesService } from '../../services/ordenes.service';
 import { Ordenes } from '../../interfaces/ordenes.interface';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-formulario',
