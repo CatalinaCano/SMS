@@ -7,15 +7,28 @@
 <div class="jumbotron animated bounceInDown">
     <h1> <i class="fas fa-file-upload"></i> Subir Archivo </h1>
     <hr class="my-4">
-    <form class="form-horizontal">
-        <fieldset>
-            <div class="form-row">
-                <div class="form-group col-md-4">
-                    <label for="orden"> <i class="fas fa-address-card"></i> Número de Ordén</label>
-                    <input type="text" class="form-control" placeholder="123456" id="orden">
-                </div>
-
+    <form class="form-inline" ngNativeValidate [formGroup]="formulario" (ngSubmit)="buscarPorOrden()" novalidate="novalidate">
+        <div class="form-group lg-4">
+            <input type="text" readonly class="form-control-plaintext" value="Número de ordén">
+        </div>
+        <div class="form-group mx-sm-4">
+            <input type="number" class="form-control" id="numeroOrden" placeholder="123456" formControlName="numeroOrden"> &nbsp;
+            <div *ngIf="formulario.controls.numeroOrden.valid" class="form-control-feedback alert alert-danger">
+                Ingresar el numero de orden
             </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary mb-2"> <i class="fas fa-search"></i>   Buscar Ordén</button> &nbsp;
+        <button type="reset" class="btn btn-success mb-2"> <i class="fas fa-search"></i>   Limpiar </button>
+    </form>
+    {{formulario.valid}}
+
+    <hr>
+
+
+    <form class="form-horizontal" *ngIf="visible">
+        <fieldset>
+
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="cliente"> <i class="fas fa-user-alt"></i>  Cliente</label>
@@ -31,7 +44,6 @@
                 </div>
             </div>
             <div class="form-row">
-
                 <div class="form-group col-md-8">
                     <div class="form-group col-md-8 file-path-wrapper">
                         <label for="archivo"><i class="fas fa-align-justify"></i> Archivo</label>

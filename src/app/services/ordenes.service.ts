@@ -67,6 +67,9 @@ export class OrdenesService {
    getOrdenes() {
      return this.ordenes;
    }
+   obtenerDatosOrden( numeroOrden: string) {
+       console.log('llego al servicio con parametro ' + numeroOrden);
+   }
 
 
 }
