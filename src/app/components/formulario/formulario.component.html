@@ -15,11 +15,11 @@
                 <input type="text" readonly class="form-control-plaintext" value="Número de ordén">
             </div>
             <div class="form-group col-md-3">
-                <input type="number" class="form-control" id="numeroOrden" placeholder="123456" formControlName="numeroOrden">
+                <input type="text" class="form-control" id="numeroOrden" placeholder="123456" formControlName="numeroOrden">
                 <div *ngIf="formulario.controls['numeroOrden'].errors?.required" class=" form-control-feedback alert alert-danger">
                     <small>*Obligatorio</small>
                 </div>
-                <div *ngIf="formulario.controls['numeroOrden'].errors?.minlength" class="form-control-feedback alert alert-danger">
+                <div *ngIf="formulario.controls['numeroOrden'].hasError('minlength')" class="form-control-feedback alert alert-danger">
                     <small>Debe contener minimo 6 digitos</small>
                 </div>
             </div>
@@ -29,12 +29,8 @@
 
             </div>
         </div>
-
-
-
-
     </form>
-    {{formulario.controls}}
+    {{formulario.valid}}
 
     <hr>
 

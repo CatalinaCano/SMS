@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrdenesService } from '../../services/ordenes.service';
 import { Ordenes } from '../../interfaces/ordenes.interface';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MyValidators } from '../../validators/validators';
 
 @Component({
   selector: 'app-formulario',
@@ -18,7 +19,7 @@ export class FormularioComponent implements OnInit {
   constructor( private _ordenesService: OrdenesService) {
 
     this.formulario = new FormGroup({
-      'numeroOrden': new FormControl( '', [Validators.required, Validators.minLength(6)])
+      'numeroOrden': new FormControl( '', [Validators.required, Validators.minLength(6), MyValidators.validarLongitudOrden ])
     });
    }
   /*
