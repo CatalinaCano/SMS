@@ -34,13 +34,13 @@ export class FormularioComponent implements OnInit {
 
   buscarPorOrden() {
      this.visible = true;
-     console.log(this.formulario);
-     console.log(this.formulario.value.numeroOrden);
+     (<HTMLInputElement> document.getElementById('txtNumeroOrden')).disabled = true;
      this._ordenesService.obtenerDatosOrden(this.formulario.value.numeroOrden);
   }
 
   limpiar() {
     this.visible = false;
+    (<HTMLInputElement> document.getElementById('txtNumeroOrden')).disabled = false;
     this.formulario.reset();
   }
 
