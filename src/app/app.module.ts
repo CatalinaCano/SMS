@@ -18,6 +18,8 @@ import { FormularioComponent } from './components/formulario/formulario.componen
 import { BreadcrumbComponent } from './components/shared/breadcrumb/breadcrumb.component';
 import { InformacionComponent } from './components/shared/informacion/informacion.component';
 import { FormComponent } from './components/form/form.component';
+import { InicioComponent } from './components/shared/inicio/inicio.component';
+
 
 
 
@@ -31,7 +33,8 @@ import { FormComponent } from './components/form/form.component';
     FormularioComponent,
     BreadcrumbComponent,
     InformacionComponent,
-    FormComponent
+    FormComponent,
+    InicioComponent
 
   ],
   imports: [

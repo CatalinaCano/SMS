@@ -14,8 +14,9 @@ export class FormularioComponent implements OnInit {
 
   formulario: FormGroup;
   visible = false;
-
   ordenes: Ordenes[] = [];
+  cod_cliente: string;
+
   constructor( private _ordenesService: OrdenesService) {
 
     this.formulario = new FormGroup({
@@ -44,7 +45,11 @@ export class FormularioComponent implements OnInit {
     this.formulario.reset();
   }
 
+  subirArchivo() {
+    console.log(this.cod_cliente);
+    return this.cod_cliente;
 
+  }
 
 
 }

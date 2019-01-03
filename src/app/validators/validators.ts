@@ -16,5 +16,7 @@ export class MyValidators {
 
 
 function isNumber(value: string | number): boolean {
-   return !isNaN(Number(value.toString()));
+    if (value != null) {
+        return !isNaN(Number(value.toString()));
+    }
 }
