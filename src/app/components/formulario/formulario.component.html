@@ -20,7 +20,10 @@
                     <small>*Obligatorio</small>
                 </div>
                 <div *ngIf="formulario.controls['numeroOrden'].hasError('minlength')" class="form-control-feedback alert alert-danger">
-                    <small>Debe contener minimo 6 digitos</small>
+                    <small>*Debe contener minimo 6 digitos</small>
+                </div>
+                <div *ngIf="formulario.get('numeroOrden').hasError('numeroOrden')" class="form-control-feedback alert alert-danger">
+                    <small>*Debe ser un Número</small>
                 </div>
             </div>
             <div class="form-group col-md-6">
