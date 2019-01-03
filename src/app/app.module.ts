@@ -17,6 +17,7 @@ import { PanelInformacionComponent } from './components/shared/panel-informacion
 import { FormularioComponent } from './components/formulario/formulario.component';
 import { BreadcrumbComponent } from './components/shared/breadcrumb/breadcrumb.component';
 import { InformacionComponent } from './components/shared/informacion/informacion.component';
+import { FormComponent } from './components/form/form.component';
 
 
 
@@ -29,7 +30,8 @@ import { InformacionComponent } from './components/shared/informacion/informacio
     PanelInformacionComponent,
     FormularioComponent,
     BreadcrumbComponent,
-    InformacionComponent
+    InformacionComponent,
+    FormComponent
 
   ],
   imports: [

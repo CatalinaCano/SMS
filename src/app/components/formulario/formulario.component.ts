@@ -18,7 +18,7 @@ export class FormularioComponent implements OnInit {
   constructor( private _ordenesService: OrdenesService) {
 
     this.formulario = new FormGroup({
-      'numeroOrden': new FormControl( ['', [Validators.required, Validators.minLength(6), Validators.maxLength(10)]])
+      'numeroOrden': new FormControl( '', [Validators.required, Validators.minLength(6)])
     });
    }
   /*
@@ -33,12 +33,13 @@ export class FormularioComponent implements OnInit {
 
   buscarPorOrden() {
      this.visible = true;
-
+     console.log(this.formulario);
      console.log(this.formulario.value.numeroOrden);
      this._ordenesService.obtenerDatosOrden(this.formulario.value.numeroOrden);
   }
 
   limpiar() {
+    this.visible = false;
     this.formulario.reset();
   }
 
