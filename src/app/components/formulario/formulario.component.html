@@ -42,38 +42,45 @@
 
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="cliente"> <i class="fas fa-user-alt"></i>  Cliente</label>
-                    <select id="cliente" class="form-control">                            
-                        <option   [selected]  *ngFor="let or of ordenes" >{{or.cliente.RAZON_SOCIAL | uppercase}}</option>      
+                    <label for="proveedor"> <i class="fas fa-address-card"></i>  Proveedor</label>
+                    <select id="proveedor" class="form-control">                            
+                        <option   [selected]  *ngFor="let p of proveedores" >{{p.RAZON_SOCIAL_PROVEDOR | uppercase}}</option>      
                     </select>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="producto"> <i class="fab fa-product-hunt"></i> Producto</label>
-                    <select id="producto" class="form-control">
-                        <option [selected] *ngFor="let or of ordenes" >{{or.producto.DESCRIPCION_PRODUCTO | uppercase}}</option>    
-                    </select>
+                    <label for="cliente"> <i class="fas fa-user-alt"></i>  Cliente</label>
+                    <select id="cliente" class="form-control" (change)="clienteSeleccionado($event.target.value)">  
+                            <option value="0">Selecciona una opción</option>                          
+                            <option  *ngFor="let cl of clientes"  [attr.value]="cl.codigoCliente">{{cl.razonSocial | uppercase}}</option>      
+                        </select>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-8">
-                    <div class="form-group col-md-8 file-path-wrapper">
-                        <label for="archivo"><i class="fas fa-align-justify"></i> Archivo</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="archivo" aria-describedby="archivo">
-                                <label class="custom-file-label" for="archivo">Seleccionar Archivo</label>
-                            </div>
+                <div class="form-group col-md-6">
+                    <label for="producto"><i class="fab fa-product-hunt"></i> Producto</label>
+                    <select id="producto" class="form-control">
+                            <option [selected] *ngFor="let pr of productos" >{{pr.descripcionProducto | uppercase}}</option>    
+                        </select>
+                </div>
+                <div class="form-group col-md-6 file-path-wrapper">
+                    <label for="archivo"><i class="fas fa-align-justify"></i> Archivo</label>
+                    <div class="input-group">
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="archivo" aria-describedby="archivo">
+                            <label class="custom-file-label" for="archivo">Seleccionar Archivo</label>
                         </div>
                     </div>
                 </div>
             </div>
+
             <hr>
             <div class="form-group block-center">
                 <div class="col-lg-10 col-lg-offset-4">
-                    <button type="reset" class="btn btn-primary"> <i class="fas fa-trash-alt"></i> Limpiar Formulario</button>&nbsp;
+                    <button (click)="limpiar()" type="reset" class="btn btn-primary"> <i class="fas fa-trash-alt"></i> Limpiar Formulario</button>&nbsp;
                     <button (click)="subirArchivo()" type="submit" class="btn btn-success"> <i class="fas fa-file-upload"></i>  Subir Archivo</button>
                 </div>
             </div>
         </fieldset>
+
     </form>
 </div>

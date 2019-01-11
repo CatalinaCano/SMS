@@ -9,6 +9,11 @@ import {APP_ROUTING} from './app.routes';
 
 //Servicios
 import { OrdenesService } from './services/ordenes.service';
+import { ClientesService } from './services/clientes.service';
+import { ProductosService } from './services/productos.service';
+import { ProveedoresService } from './services/proveedores.service';
+
+
 
 //Componentes
 import { AppComponent } from './app.component';
@@ -19,9 +24,6 @@ import { BreadcrumbComponent } from './components/shared/breadcrumb/breadcrumb.c
 import { InformacionComponent } from './components/shared/informacion/informacion.component';
 import { FormComponent } from './components/form/form.component';
 import { InicioComponent } from './components/shared/inicio/inicio.component';
-
-
-
 
 
 
@@ -46,7 +48,10 @@ import { InicioComponent } from './components/shared/inicio/inicio.component';
     CommonModule
   ],
   providers: [
-    OrdenesService
+    OrdenesService,
+    ClientesService,
+    ProductosService,
+    ProveedoresService
   ],
   bootstrap: [AppComponent]
 })
