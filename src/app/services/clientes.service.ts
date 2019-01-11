@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Cliente } from '../interfaces/cliente.interface';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { URL_SERVICIOS } from '../config/config';
 import { Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 import swal from 'sweetalert2';
 
 

@@ -43,14 +43,15 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="proveedor"> <i class="fas fa-address-card"></i>  Proveedor</label>
-                    <select id="proveedor" class="form-control">                            
-                        <option   [selected]  *ngFor="let p of proveedores" >{{p.RAZON_SOCIAL_PROVEDOR | uppercase}}</option>      
+                    <select id="proveedor" class="form-control" (change)=" proveedorSeleccionado($event.target.value)">         
+                        <option value="0">Selecciona un Proveedor</option>                                             
+                        <option *ngFor="let p of proveedores"  [attr.value]="p.CODIGO_PROVEDOR" >{{p.RAZON_SOCIAL_PROVEDOR | uppercase}}</option>      
                     </select>
                 </div>
                 <div class="form-group col-md-6">
                     <label for="cliente"> <i class="fas fa-user-alt"></i>  Cliente</label>
                     <select id="cliente" class="form-control" (change)="clienteSeleccionado($event.target.value)">  
-                            <option value="0">Selecciona una opción</option>                          
+                            <option value="0">Selecciona un Cliente</option>                          
                             <option  *ngFor="let cl of clientes"  [attr.value]="cl.codigoCliente">{{cl.razonSocial | uppercase}}</option>      
                         </select>
                 </div>
@@ -58,8 +59,9 @@
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="producto"><i class="fab fa-product-hunt"></i> Producto</label>
-                    <select id="producto" class="form-control">
-                            <option [selected] *ngFor="let pr of productos" >{{pr.descripcionProducto | uppercase}}</option>    
+                    <select id="producto" class="form-control" (change)="productoSeleccionado($event.target.value)">
+                            <option value="0">Selecciona un Producto</option>                          
+                            <option *ngFor="let pr of productos" [attr.value]="pr.codigoProducto" >{{pr.descripcionProducto | uppercase}}</option>    
                         </select>
                 </div>
                 <div class="form-group col-md-6 file-path-wrapper">
@@ -74,6 +76,12 @@
             </div>
 
             <hr>
+            <div *ngIf="mostrarNombreArchivo">
+                El nombre del archivo sera: {{cod_cliente +'_' + cod_producto+'_' + numero_orden +'.txt'}}
+                <br>
+                <hr>
+            </div>
+
             <div class="form-group block-center">
                 <div class="col-lg-10 col-lg-offset-4">
                     <button (click)="limpiar()" type="reset" class="btn btn-primary"> <i class="fas fa-trash-alt"></i> Limpiar Formulario</button>&nbsp;

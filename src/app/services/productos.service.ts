@@ -1,30 +1,23 @@
 import { Injectable } from '@angular/core';
-import { Producto } from '../interfaces/producto.interface';
+import { URL_SERVICIOS } from '../config/config';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import {  catchError } from 'rxjs/operators';
+import swal from 'sweetalert2';
 
 @Injectable()
 export class ProductosService {
+  constructor( public http: HttpClient) { }
 
-  private productos: Producto[] = [
-    {
-      codigoProducto: '1690',
-      descripcionProducto : 'Vencimiento Endosos'
-    },
-    {
-      codigoProducto: '1698',
-      descripcionProducto : 'Revista 1'
-    },
-    {
-      codigoProducto: '1713',
-      descripcionProducto : 'Sodimac Colombia S.A.'
-    },
-    {
-      codigoProducto: '1734',
-      descripcionProducto : 'Facturacion EPS'
-    }
-  ];
-  constructor() { }
-
-  getProductos() {
-    return this.productos;
+  buscarProductosPorCliente ( idCliente: string) {
+    console.log('Llega a buscar con id de cliente ' + idCliente);
+    let url = URL_SERVICIOS + '/producto?codigoCliente=' + idCliente;
+    return this.http.get(url).pipe(
+      catchError(
+        err => {
+          swal('Error', 'Error con el Web service al cargar los productos', 'error');
+          return Observable.throw(err);
+        }
+    ));
   }
 }

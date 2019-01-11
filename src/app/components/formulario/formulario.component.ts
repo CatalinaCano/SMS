@@ -21,13 +21,17 @@ export class FormularioComponent implements OnInit {
 
   formulario: FormGroup;
   visible = false;
+  mostrarNombreArchivo = false;
 
   ordenes: Ordenes[] = [];
   clientes: Cliente[] = [];
   proveedores: Proveedores[] = [];
   productos: Producto[] = [];
+
+  numero_orden: string;
   cod_proveedor: string;
   cod_cliente: string;
+  cod_producto: string;
 
 
   constructor( private _ordenesService: OrdenesService,
@@ -46,7 +50,7 @@ export class FormularioComponent implements OnInit {
     this.cargarClientes();
     this.ordenes = this._ordenesService.getOrdenes();
     this.proveedores = this._provedoresService.getProvedores();
-    this.productos = this._productosService.getProductos();
+
   }
 
  cargarClientes() {
@@ -61,11 +65,13 @@ export class FormularioComponent implements OnInit {
   buscarPorOrden() {
      this.visible = true;
      (<HTMLInputElement> document.getElementById('txtNumeroOrden')).disabled = true;
+      this.numero_orden = this.formulario.value.numeroOrden;
      this._ordenesService.obtenerDatosOrden(this.formulario.value.numeroOrden);
   }
 
   limpiar() {
     this.visible = false;
+    this.mostrarNombreArchivo = false;
     (<HTMLInputElement> document.getElementById('txtNumeroOrden')).disabled = false;
     this.formulario.reset();
   }
@@ -87,7 +93,18 @@ export class FormularioComponent implements OnInit {
   clienteSeleccionado(idCliente: number) {
     this.cod_cliente = idCliente.toString();
     (<HTMLInputElement> document.getElementById('cliente')).disabled = true;
-    console.log('Codigo del Cliente: ' + this.cod_cliente);
+    this._productosService.buscarProductosPorCliente(this.cod_cliente)
+        .subscribe(res => {
+          this.productos = JSON.parse(JSON.stringify(res));
+        }, error => console.log(error));
+
+  }
+
+  productoSeleccionado(idProducto: number) {
+    this.cod_producto = idProducto.toString();
+    (<HTMLInputElement> document.getElementById('producto')).disabled = true;
+    this.mostrarNombreArchivo = true;
+    console.log('Codigo del Producto: ' + this.cod_producto);
 
   }
 }
