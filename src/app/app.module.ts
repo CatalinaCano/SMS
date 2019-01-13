@@ -24,6 +24,7 @@ import { BreadcrumbComponent } from './components/shared/breadcrumb/breadcrumb.c
 import { InformacionComponent } from './components/shared/informacion/informacion.component';
 import { FormComponent } from './components/form/form.component';
 import { InicioComponent } from './components/shared/inicio/inicio.component';
+import { SubirArchivoService } from './services/subir-archivo.service';
 
 
 
@@ -51,7 +52,8 @@ import { InicioComponent } from './components/shared/inicio/inicio.component';
     OrdenesService,
     ClientesService,
     ProductosService,
-    ProveedoresService
+    ProveedoresService,
+    SubirArchivoService
   ],
   bootstrap: [AppComponent]
 })

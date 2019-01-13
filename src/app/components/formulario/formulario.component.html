@@ -14,7 +14,7 @@
             <div class=" form-group col-md-3">
                 <input type="text" readonly class="form-control-plaintext" value="Número de ordén">
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-3" [ngClass]="{'alert alert-danger':!formulario.get('numeroOrden').valid}">
                 <input type="text" class="form-control" id="txtNumeroOrden" placeholder="123456" formControlName="numeroOrden">
                 <div *ngIf="formulario.controls['numeroOrden'].errors?.required" class=" form-control-feedback alert alert-danger">
                     <small>*Obligatorio</small>
@@ -37,39 +37,58 @@
     <hr>
 
 
-    <form class="form-horizontal" *ngIf="visible">
+    <form ngNativeValidate [formGroup]="forma" (ngSubmit)="subirArchivo()" class="form-horizontal" novalidate="novalidate" *ngIf="visible">
         <fieldset>
 
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6" [ngClass]="{'alert alert-danger':!forma.get('proveedor').valid}">
                     <label for="proveedor"> <i class="fas fa-address-card"></i>  Proveedor</label>
-                    <select id="proveedor" class="form-control" (change)=" proveedorSeleccionado($event.target.value)">         
+                    <select id="proveedor" class="form-control" required formControlName="proveedor" (change)=" proveedorSeleccionado($event.target.value)">         
                         <option value="0">Selecciona un Proveedor</option>                                             
                         <option *ngFor="let p of proveedores"  [attr.value]="p.CODIGO_PROVEDOR" >{{p.RAZON_SOCIAL_PROVEDOR | uppercase}}</option>      
                     </select>
+                    <div *ngIf="forma.controls['proveedor'].errors?.required" class=" form-control-feedback alert alert-danger">
+                        <small>*Obligatorio</small>
+                    </div>
                 </div>
-                <div class="form-group col-md-6">
+                <br>
+                <div class="form-group col-md-6" [ngClass]="{'alert alert-danger':!forma.get('cliente').valid}">
                     <label for="cliente"> <i class="fas fa-user-alt"></i>  Cliente</label>
-                    <select id="cliente" class="form-control" (change)="clienteSeleccionado($event.target.value)">  
+                    <select id="cliente" class="form-control" required formControlName="cliente" (change)="clienteSeleccionado($event.target.value)">  
                             <option value="0">Selecciona un Cliente</option>                          
                             <option  *ngFor="let cl of clientes"  [attr.value]="cl.codigoCliente">{{cl.razonSocial | uppercase}}</option>      
                         </select>
+                    <div *ngIf="forma.controls['cliente'].errors?.required" class=" form-control-feedback alert alert-danger">
+                        <small>*Obligatorio</small>
+                    </div>
                 </div>
             </div>
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6" [ngClass]="{'alert alert-danger':!forma.get('producto').valid}">
                     <label for="producto"><i class="fab fa-product-hunt"></i> Producto</label>
-                    <select id="producto" class="form-control" (change)="productoSeleccionado($event.target.value)">
+                    <select id="producto" class="form-control" required formControlName="producto" (change)="productoSeleccionado($event.target.value)">
                             <option value="0">Selecciona un Producto</option>                          
                             <option *ngFor="let pr of productos" [attr.value]="pr.codigoProducto" >{{pr.descripcionProducto | uppercase}}</option>    
                         </select>
+                    <div *ngIf="forma.controls['producto'].errors?.required" class=" form-control-feedback alert alert-danger">
+                        <small>*Obligatorio</small>
+                    </div>
                 </div>
                 <div class="form-group col-md-6 file-path-wrapper">
                     <label for="archivo"><i class="fas fa-align-justify"></i> Archivo</label>
                     <div class="input-group">
-                        <div class="custom-file">
+                        <!--<div class="custom-file">
                             <input type="file" class="custom-file-input" id="archivo" aria-describedby="archivo">
                             <label class="custom-file-label" for="archivo">Seleccionar Archivo</label>
+                        </div>-->
+
+                        <div class="card">
+                            <div class="card-body" align="center">
+                                <h4 class="card-title text-primary"> <i class="fas fa-folder-open"></i> Archivo a Subir </h4>
+                                <label for="input-file-now">Selecciona el Archivo txt a subir</label>
+                                <img *ngIf="archivoEntradaTemp" [src]="archivoEntradaTemp">
+                                <input (change)="seleccionArchivo($event.target.files[0])" type="file" id="archivo" accept="text/plain" class="dropify" required formControlName="archivo" />
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -85,7 +104,7 @@
             <div class="form-group block-center">
                 <div class="col-lg-10 col-lg-offset-4">
                     <button (click)="limpiar()" type="reset" class="btn btn-primary"> <i class="fas fa-trash-alt"></i> Limpiar Formulario</button>&nbsp;
-                    <button (click)="subirArchivo()" type="submit" class="btn btn-success"> <i class="fas fa-file-upload"></i>  Subir Archivo</button>
+                    <button (click)="subirArchivo()" [disabled]="!forma.valid" type="submit " class="btn btn-success"> <i class="fas fa-file-upload"></i>  Subir Archivo</button>
                 </div>
             </div>
         </fieldset>

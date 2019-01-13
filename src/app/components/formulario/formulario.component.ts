@@ -10,6 +10,7 @@ import { Proveedores } from '../../interfaces/proveedores.interface';
 import { ClientesService } from '../../services/clientes.service';
 import { ProductosService } from '../../services/productos.service';
 import { Producto } from '../../interfaces/producto.interface';
+import { SubirArchivoService } from 'src/app/services/subir-archivo.service';
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
@@ -20,6 +21,7 @@ export class FormularioComponent implements OnInit {
 
 
   formulario: FormGroup;
+  forma: FormGroup;
   visible = false;
   mostrarNombreArchivo = false;
 
@@ -32,12 +34,15 @@ export class FormularioComponent implements OnInit {
   cod_proveedor: string;
   cod_cliente: string;
   cod_producto: string;
+  archivoEntrada: File;
+  archivoEntradaTemp;
 
 
   constructor( private _ordenesService: OrdenesService,
                private _provedoresService: ProveedoresService,
                private _clientesService: ClientesService,
-               private _productosService: ProductosService ) {
+               private _productosService: ProductosService,
+               private _subirArchivo: SubirArchivoService ) {
 
     this.formulario = new FormGroup({
       'numeroOrden': new FormControl( '', [Validators.required, Validators.minLength(6), MyValidators.validarLongitudOrden ])
@@ -51,6 +56,12 @@ export class FormularioComponent implements OnInit {
     this.ordenes = this._ordenesService.getOrdenes();
     this.proveedores = this._provedoresService.getProvedores();
 
+    this.forma = new FormGroup({
+      'proveedor': new FormControl('', Validators.required),
+      'cliente': new FormControl('', Validators.required),
+      'producto': new FormControl('', Validators.required),
+      'archivo': new FormControl('', Validators.required)
+    });
   }
 
  cargarClientes() {
@@ -107,4 +118,29 @@ export class FormularioComponent implements OnInit {
     console.log('Codigo del Producto: ' + this.cod_producto);
 
   }
+
+
+
+
+  seleccionArchivo(archivo: File) {
+    if (!archivo) {
+      this.archivoEntrada = null;
+      return;
+    }
+
+    if (archivo.type.indexOf('text') < 0) {
+        swal('Sólo Archivos .txt', 'El archivo seleccionado no es un archivo.txt', 'error');
+      this.archivoEntrada = null;
+      return;
+    }
+
+
+    this.archivoEntrada = archivo;
+
+    let reader = new FileReader();
+    let urlArchivoTemp = reader.readAsDataURL(archivo);
+
+    reader.onloadend = () => this.archivoEntradaTemp = reader.result;
+  }
+
 }
