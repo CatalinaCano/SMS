@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 //Rutas
 import {APP_ROUTING} from './app.routes';
 
@@ -46,7 +48,8 @@ import { SubirArchivoService } from './services/subir-archivo.service';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    NgSelectModule
   ],
   providers: [
     OrdenesService,

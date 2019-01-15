@@ -1,3 +1,16 @@
+@import "~@ng-select/ng-select/themes/material.theme.css";
+.ng-select.custom {
+    border: 0px;
+    min-height: 0px;
+    background: white;
+    border-radius: 20px 20px 20px 20px;
+    -moz-border-radius: 20px 20px 20px 20px;
+    -webkit-border-radius: 20px 20px 20px 20px;
+    border: 2px solid #C9CFD4;
+    padding-left: 5%;
+    padding-top: 1%;
+}
+
 .alert -heading {
     color: inherit
 }

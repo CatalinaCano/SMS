@@ -41,12 +41,17 @@
         <fieldset>
 
             <div class="form-row">
-                <div class="form-group col-md-6" [ngClass]="{'alert alert-danger':!forma.get('proveedor').valid}">
+                <div class="form-group col-md-6">
                     <label for="proveedor"> <i class="fas fa-address-card"></i>  Proveedor</label>
-                    <select id="proveedor" class="form-control" required formControlName="proveedor" (change)=" proveedorSeleccionado($event.target.value)">         
+                    <ng-select class="custom" required formControlName="proveedor" [virtualScroll]="true" (change)=" proveedorSeleccionado($event.target.value)">
+                        <ng-option [value]="'0'">Seleccionar Proveedor</ng-option>
+                        <ng-option *ngFor="let p of proveedores" [attr.value]="p.CODIGO_PROVEDOR">{{p.RAZON_SOCIAL_PROVEDOR | uppercase}}</ng-option>
+
+                    </ng-select>
+                    <!--<select id="proveedor" class="form-control" required formControlName="proveedor" (change)=" proveedorSeleccionado($event.target.value)">         
                         <option value="0">Selecciona un Proveedor</option>                                             
                         <option *ngFor="let p of proveedores"  [attr.value]="p.CODIGO_PROVEDOR" >{{p.RAZON_SOCIAL_PROVEDOR | uppercase}}</option>      
-                    </select>
+                    </select>-->
                     <div *ngIf="forma.controls['proveedor'].errors?.required" class=" form-control-feedback alert alert-danger">
                         <small>*Obligatorio</small>
                     </div>
@@ -86,8 +91,10 @@
                             <div class="card-body" align="center">
                                 <h4 class="card-title text-primary"> <i class="fas fa-folder-open"></i> Archivo a Subir </h4>
                                 <label for="input-file-now">Selecciona el Archivo txt a subir</label>
-                                <img *ngIf="archivoEntradaTemp" [src]="archivoEntradaTemp">
                                 <input (change)="seleccionArchivo($event.target.files[0])" type="file" id="archivo" accept="text/plain" class="dropify" required formControlName="archivo" />
+                                <div class="info" *ngIf="filePreview">
+                                    <img [src]="sanitize(filePreview)" />
+                                </div>
                             </div>
                         </div>
                     </div>

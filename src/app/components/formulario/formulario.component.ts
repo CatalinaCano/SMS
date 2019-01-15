@@ -11,10 +11,12 @@ import { ClientesService } from '../../services/clientes.service';
 import { ProductosService } from '../../services/productos.service';
 import { Producto } from '../../interfaces/producto.interface';
 import { SubirArchivoService } from 'src/app/services/subir-archivo.service';
+import { DomSanitizer } from '@angular/platform-browser';
+
 @Component({
   selector: 'app-formulario',
   templateUrl: './formulario.component.html',
-  styleUrls: ['./formulario.component.css']
+  styleUrls: ['./formulario.component.css', './formulario.component.scss']
 })
 export class FormularioComponent implements OnInit {
 
@@ -37,12 +39,17 @@ export class FormularioComponent implements OnInit {
   archivoEntrada: File;
   archivoEntradaTemp;
 
+  fileName: string;
+  filePreview: string;
+  selectedProveedorId;
+  deshabilitarProveedor = false;
 
   constructor( private _ordenesService: OrdenesService,
                private _provedoresService: ProveedoresService,
                private _clientesService: ClientesService,
                private _productosService: ProductosService,
-               private _subirArchivo: SubirArchivoService ) {
+               private _subirArchivo: SubirArchivoService ,
+               private sanitizer: DomSanitizer) {
 
     this.formulario = new FormGroup({
       'numeroOrden': new FormControl( '', [Validators.required, Validators.minLength(6), MyValidators.validarLongitudOrden ])
@@ -96,6 +103,9 @@ export class FormularioComponent implements OnInit {
 
  proveedorSeleccionado(idProveedor: number) {
     this.cod_proveedor = idProveedor.toString();
+  this.deshabilitarProveedor = true;
+
+    //this.proveedor.setDisabledState(true);
     (<HTMLInputElement> document.getElementById('proveedor')).disabled = true;
     console.log('Codigo del Proveedor: ' + this.cod_proveedor);
 
@@ -140,7 +150,15 @@ export class FormularioComponent implements OnInit {
     let reader = new FileReader();
     let urlArchivoTemp = reader.readAsDataURL(archivo);
 
-    reader.onloadend = () => this.archivoEntradaTemp = reader.result;
+    //reader.onloadend = () => this.archivoEntradaTemp = reader.result;
+    reader.onload = () => {
+     this.fileName = archivo.name + ' ' + archivo.type;
+     this.filePreview = 'data:text' + ';base64,' + reader.result;
+   };
+  }
+
+  sanitize(url: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(url);
   }
 
 }
