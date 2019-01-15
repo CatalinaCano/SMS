@@ -16,6 +16,20 @@ export class ClientesService {
   constructor( public http: HttpClient  ) {
    }
 
+
+
+   buscarClientes( termino: string) {
+     let url = URL_SERVICIOS + '/consultar?palabra=' + termino.toUpperCase();
+      console.log('URL a consultar' + url);
+      return this.http.get(url).pipe(
+        catchError(
+          err => {
+            swal('Error', 'Error al cargar Clientes', 'error');
+            return Observable.throw(err);
+          }
+        ));
+   }
+
    cargarClientes() {
       let url = URL_SERVICIOS  + '/consultar';
       return this.http.get(url).pipe(
@@ -26,4 +40,6 @@ export class ClientesService {
           }
       ));
     }
+
+
   }

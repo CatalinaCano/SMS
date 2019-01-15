@@ -41,42 +41,57 @@
         <fieldset>
 
             <div class="form-row">
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6" [ngClass]="{'alert alert-danger':!forma.get('proveedor').valid}">
                     <label for="proveedor"> <i class="fas fa-address-card"></i>  Proveedor</label>
-                    <ng-select class="custom" required formControlName="proveedor" [virtualScroll]="true" (change)=" proveedorSeleccionado($event.target.value)">
-                        <ng-option [value]="'0'">Seleccionar Proveedor</ng-option>
-                        <ng-option *ngFor="let p of proveedores" [attr.value]="p.CODIGO_PROVEDOR">{{p.RAZON_SOCIAL_PROVEDOR | uppercase}}</ng-option>
 
-                    </ng-select>
-                    <!--<select id="proveedor" class="form-control" required formControlName="proveedor" (change)=" proveedorSeleccionado($event.target.value)">         
-                        <option value="0">Selecciona un Proveedor</option>                                             
-                        <option *ngFor="let p of proveedores"  [attr.value]="p.CODIGO_PROVEDOR" >{{p.RAZON_SOCIAL_PROVEDOR | uppercase}}</option>      
-                    </select>-->
-                    <div *ngIf="forma.controls['proveedor'].errors?.required" class=" form-control-feedback alert alert-danger">
-                        <small>*Obligatorio</small>
+                    <div *ngIf="buscarProveedor">
+                        <input id="textoProveedor" #input (keyup.enter)="llenarProveedor(input.value)" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" class="form-control" type="text" placeholder="Buscar Proveedor.." style="font-family: FontAwesome, Montserrat; font-style: normal">
                     </div>
+                    <div *ngIf="opcionesProveedor">
+                        <select id="proveedor" class="form-control" required formControlName="proveedor" (change)=" proveedorSeleccionado($event.target.value)">         
+                            <option value="0">Selecciona un Proveedor</option>                                             
+                            <option *ngFor="let p of proveedores"  [attr.value]="p.CODIGO_PROVEDOR" >{{p.RAZON_SOCIAL_PROVEDOR | uppercase}}</option>      
+                        </select>
+
+                        <div *ngIf="forma.controls['proveedor'].errors?.required" class=" form-control-feedback alert alert-danger">
+                            <small>*Obligatorio {{cod_proveedor}}</small>
+                        </div>
+                    </div>
+
                 </div>
-                <br>
+
                 <div class="form-group col-md-6" [ngClass]="{'alert alert-danger':!forma.get('cliente').valid}">
                     <label for="cliente"> <i class="fas fa-user-alt"></i>  Cliente</label>
-                    <select id="cliente" class="form-control" required formControlName="cliente" (change)="clienteSeleccionado($event.target.value)">  
+
+                    <div *ngIf="buscarCliente">
+                        <input id="textoCliente" #input (keyup.enter)="llenarClientes(input.value)" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" class="form-control" type="text" placeholder="Buscar Cliente..">
+                    </div>
+
+                    <div *ngIf="opcionesCliente">
+                        <select id="cliente" class="form-control" required formControlName="cliente" (change)="clienteSeleccionado($event.target.value)">  
                             <option value="0">Selecciona un Cliente</option>                          
                             <option  *ngFor="let cl of clientes"  [attr.value]="cl.codigoCliente">{{cl.razonSocial | uppercase}}</option>      
                         </select>
-                    <div *ngIf="forma.controls['cliente'].errors?.required" class=" form-control-feedback alert alert-danger">
-                        <small>*Obligatorio</small>
+                        <div *ngIf="forma.controls['cliente'].errors?.required" class=" form-control-feedback alert alert-danger">
+                            <small>*Obligatorio</small>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6" [ngClass]="{'alert alert-danger':!forma.get('producto').valid}">
                     <label for="producto"><i class="fab fa-product-hunt"></i> Producto</label>
-                    <select id="producto" class="form-control" required formControlName="producto" (change)="productoSeleccionado($event.target.value)">
+                    <div *ngIf="buscarProducto">
+                        <input id="textoProducto" #input (keyup.enter)="llenarProductos(input.value)" onKeyUp="document.getElementById(this.id).value=document.getElementById(this.id).value.toUpperCase()" class="form-control" type="text" placeholder="Buscar Producto..">
+                    </div>
+                    <div *ngIf="opcionesProducto">
+                        <select id="producto" class="form-control" required formControlName="producto" (change)="productoSeleccionado($event.target.value)">
                             <option value="0">Selecciona un Producto</option>                          
                             <option *ngFor="let pr of productos" [attr.value]="pr.codigoProducto" >{{pr.descripcionProducto | uppercase}}</option>    
                         </select>
-                    <div *ngIf="forma.controls['producto'].errors?.required" class=" form-control-feedback alert alert-danger">
-                        <small>*Obligatorio</small>
+                        <div *ngIf="forma.controls['producto'].errors?.required" class=" form-control-feedback alert alert-danger">
+                            <small>*Obligatorio</small>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group col-md-6 file-path-wrapper">

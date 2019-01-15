@@ -10,7 +10,7 @@ export class ProductosService {
   constructor( public http: HttpClient) { }
 
   buscarProductosPorCliente ( idCliente: string) {
-    console.log('Llega a buscar con id de cliente ' + idCliente);
+    console.log('Llega a buscar con id de cliente ' + idCliente );
     let url = URL_SERVICIOS + '/producto?codigoCliente=' + idCliente;
     return this.http.get(url).pipe(
       catchError(
@@ -19,5 +19,9 @@ export class ProductosService {
           return Observable.throw(err);
         }
     ));
+  }
+
+  buscarProductosPorPalabra(termino: string) {
+    console.log(termino);
   }
 }

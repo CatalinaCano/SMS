@@ -27,6 +27,15 @@ export class FormularioComponent implements OnInit {
   visible = false;
   mostrarNombreArchivo = false;
 
+  buscarProveedor = true;
+  opcionesProveedor = false;
+
+  buscarCliente = true;
+  opcionesCliente = false;
+
+  buscarProducto = true;
+  opcionesProducto = false;
+
   ordenes: Ordenes[] = [];
   clientes: Cliente[] = [];
   proveedores: Proveedores[] = [];
@@ -36,6 +45,7 @@ export class FormularioComponent implements OnInit {
   cod_proveedor: string;
   cod_cliente: string;
   cod_producto: string;
+  nombre_producto: string;
   archivoEntrada: File;
   archivoEntradaTemp;
 
@@ -59,7 +69,6 @@ export class FormularioComponent implements OnInit {
     El ngOnInit se utiliza cuando la pagina ya esta renderizada, primero se ejecuta el constructor
   */
   ngOnInit() {
-    this.cargarClientes();
     this.ordenes = this._ordenesService.getOrdenes();
     this.proveedores = this._provedoresService.getProvedores();
 
@@ -71,14 +80,7 @@ export class FormularioComponent implements OnInit {
     });
   }
 
- cargarClientes() {
-   this._clientesService.cargarClientes()
-       .subscribe(
-         res => {
-          this.clientes = JSON.parse(JSON.stringify(res));
-         }, error => console.log(error));
 
- }
 
   buscarPorOrden() {
      this.visible = true;
@@ -90,8 +92,15 @@ export class FormularioComponent implements OnInit {
   limpiar() {
     this.visible = false;
     this.mostrarNombreArchivo = false;
+    this.buscarProveedor = true;
+    this.opcionesProveedor = false;
+    this.buscarCliente = true;
+    this.opcionesCliente = false;
+    this.buscarProducto = true;
+    this.opcionesProducto = false;
     (<HTMLInputElement> document.getElementById('txtNumeroOrden')).disabled = false;
     this.formulario.reset();
+    this.forma.reset();
   }
 
   subirArchivo() {
@@ -103,9 +112,8 @@ export class FormularioComponent implements OnInit {
 
  proveedorSeleccionado(idProveedor: number) {
     this.cod_proveedor = idProveedor.toString();
-  this.deshabilitarProveedor = true;
-
-    //this.proveedor.setDisabledState(true);
+    console.log('El codigo del proveedor es: ' + this.cod_proveedor);
+    this.buscarProveedor = false;
     (<HTMLInputElement> document.getElementById('proveedor')).disabled = true;
     console.log('Codigo del Proveedor: ' + this.cod_proveedor);
 
@@ -114,16 +122,17 @@ export class FormularioComponent implements OnInit {
   clienteSeleccionado(idCliente: number) {
     this.cod_cliente = idCliente.toString();
     (<HTMLInputElement> document.getElementById('cliente')).disabled = true;
+    this.buscarCliente = false;
     this._productosService.buscarProductosPorCliente(this.cod_cliente)
         .subscribe(res => {
           this.productos = JSON.parse(JSON.stringify(res));
         }, error => console.log(error));
-
   }
 
   productoSeleccionado(idProducto: number) {
     this.cod_producto = idProducto.toString();
     (<HTMLInputElement> document.getElementById('producto')).disabled = true;
+    this.buscarProducto = false;
     this.mostrarNombreArchivo = true;
     console.log('Codigo del Producto: ' + this.cod_producto);
 
@@ -159,6 +168,28 @@ export class FormularioComponent implements OnInit {
 
   sanitize(url: string) {
     return this.sanitizer.bypassSecurityTrustUrl(url);
+  }
+
+  llenarProveedor(termino: string) {
+    console.log(termino);
+    this.opcionesProveedor = true;
+
+  }
+
+  llenarClientes(termino: string) {
+    this._clientesService.buscarClientes(termino)
+        .subscribe(
+          res => {
+            this.clientes = JSON.parse(JSON.stringify(res));
+          }, err => console.log(err));
+    this.opcionesCliente = true;
+  }
+
+
+  llenarProductos(termino: string) {
+    this.nombre_producto = termino;
+    this.opcionesProducto = true;
+    this._productosService.buscarProductosPorPalabra(termino);
   }
 
 }

@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { MatAutocompleteModule, MatInputModule } from '@angular/material';
 
 //Rutas
 import {APP_ROUTING} from './app.routes';
@@ -49,7 +50,9 @@ import { SubirArchivoService } from './services/subir-archivo.service';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    NgSelectModule
+    NgSelectModule,
+    MatInputModule,
+    MatAutocompleteModule
   ],
   providers: [
     OrdenesService,
