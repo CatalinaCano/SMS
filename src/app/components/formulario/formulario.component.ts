@@ -185,8 +185,8 @@ export class FormularioComponent implements OnInit {
             this.clientes = JSON.parse(JSON.stringify(res));
             if (this.clientes.length === 0) {
               swal('No existen Clientes', 'No existen clientes con ese parametro de búsqueda', 'warning');
+              (<HTMLInputElement>document.getElementById('textoCliente')).value = '   ';
               this.opcionesCliente = false;
-              //this.forma.patchValue({cliente: ' '});
             }
             console.log(this.clientes);
           }, err => console.log(err));
@@ -202,6 +202,7 @@ export class FormularioComponent implements OnInit {
           this.productos = JSON.parse(JSON.stringify(res));
           if (this.productos.length === 0) {
             swal('No existen Productos', 'No existen Productos con ese parametro de búsqueda', 'warning');
+            (<HTMLInputElement>document.getElementById('textoProducto')).value = '   ';
             this.opcionesProducto = false;
           }
         }, error => console.log(error));
