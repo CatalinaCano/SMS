@@ -106,7 +106,7 @@
                             <div class="card-body" align="center">
                                 <h4 class="card-title text-primary"> <i class="fas fa-folder-open"></i> Archivo a Subir </h4>
                                 <label for="input-file-now">Selecciona el Archivo txt a subir</label>
-                                <input (change)="seleccionArchivo($event.target.files[0])" type="file" id="archivo" accept="text/plain" class="dropify" required formControlName="archivo" />
+                                <input #archivo (change)="seleccionArchivo($event.target.files[0])" type="file" id="archivo" accept="text/plain" class="dropify" required formControlName="archivo" />
                                 <div class="info" *ngIf="filePreview">
                                     <img [src]="sanitize(filePreview)" />
                                 </div>

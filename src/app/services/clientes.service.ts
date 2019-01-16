@@ -13,10 +13,7 @@ export class ClientesService {
     * Para poder realizar peticiones HTTP debe implementarse un public http: HttpClient
     */
 
-  constructor( public http: HttpClient  ) {
-   }
-
-
+  constructor( public http: HttpClient  ) {}
 
    buscarClientes( termino: string) {
      let url = URL_SERVICIOS + '/consultar?palabra=' + termino.toUpperCase();
@@ -29,17 +26,4 @@ export class ClientesService {
           }
         ));
    }
-
-   cargarClientes() {
-      let url = URL_SERVICIOS  + '/consultar';
-      return this.http.get(url).pipe(
-        catchError(
-          err => {
-            swal('Error', 'Error al cargar Clientes', 'error');
-            return Observable.throw(err);
-          }
-      ));
-    }
-
-
   }

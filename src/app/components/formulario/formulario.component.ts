@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { OrdenesService } from '../../services/ordenes.service';
 import { Ordenes } from '../../interfaces/ordenes.interface';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -21,6 +21,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class FormularioComponent implements OnInit {
 
 
+  @ViewChild('archivo') archivo: ElementRef;
   formulario: FormGroup;
   forma: FormGroup;
   visible = false;
@@ -70,9 +71,7 @@ export class FormularioComponent implements OnInit {
     El ngOnInit se utiliza cuando la pagina ya esta renderizada, primero se ejecuta el constructor
   */
   ngOnInit() {
-    this.ordenes = this._ordenesService.getOrdenes();
     this.proveedores = this._provedoresService.getProvedores();
-
     this.forma = new FormGroup({
       'proveedor': new FormControl('', Validators.required),
       'cliente': new FormControl('', Validators.required),
@@ -135,9 +134,6 @@ export class FormularioComponent implements OnInit {
     (<HTMLInputElement> document.getElementById('producto')).disabled = true;
     this.buscarProducto = false;
     this.mostrarNombreArchivo = true;
-    console.log('Codigo del Producto: ' + this.cod_producto);
-    console.log('Codigo del cliente: ' + this.cod_cliente);
-
   }
 
 
@@ -151,6 +147,8 @@ export class FormularioComponent implements OnInit {
 
     if (archivo.type.indexOf('text') < 0) {
         swal('Sólo Archivos .txt', 'El archivo seleccionado no es un archivo.txt', 'error');
+        this.archivo.nativeElement.value = '';
+        this.forma.controls['archivo'].setErrors({'incorrect': true});
       this.archivoEntrada = null;
       return;
     }
