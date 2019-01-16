@@ -60,8 +60,7 @@ export class FormularioComponent implements OnInit {
                private _provedoresService: ProveedoresService,
                private _clientesService: ClientesService,
                private _productosService: ProductosService,
-               private _subirArchivo: SubirArchivoService ,
-               private sanitizer: DomSanitizer) {
+               private _subirArchivo: SubirArchivoService) {
 
     this.formulario = new FormGroup({
       'numeroOrden': new FormControl( '', [Validators.required, Validators.minLength(6), MyValidators.validarLongitudOrden ])
@@ -84,10 +83,17 @@ export class FormularioComponent implements OnInit {
 
 
   buscarPorOrden() {
-     this.visible = true;
      (<HTMLInputElement> document.getElementById('txtNumeroOrden')).disabled = true;
       this.numero_orden = this.formulario.value.numeroOrden;
-     this._ordenesService.obtenerDatosOrden(this.formulario.value.numeroOrden);
+     this._ordenesService.obtenerDatosOrden(this.formulario.value.numeroOrden)
+                          .subscribe( res => {
+                             console.log(res);
+                             if (res === 'existe') {
+                              this.visible = true;
+                             }
+                             swal('Error', 'No se encuentra el número de orden', 'error');
+                             this.limpiar();
+                           });
   }
 
   limpiar() {
@@ -159,10 +165,8 @@ export class FormularioComponent implements OnInit {
       base64Observable.next(fileReader.result);
   };
 
-  //console.log(Object.keys(base64Observable));
 
   base64Observable.subscribe(res =>
-    // this.textoArchivo64 = JSON.parse(JSON.stringify(res))
     this._subirArchivo.subirArchivo(this.cod_proveedor, this.nombreArchivo, res)
                       .subscribe(
                         res => {  swal('Registro exitoso...', 'El Archivo se almaceno con éxito', 'success');
