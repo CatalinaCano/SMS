@@ -10,8 +10,9 @@ export class ProductosService {
   constructor( public http: HttpClient) { }
 
   buscarProductosPorCliente ( idCliente: string, palabra: string) {
-    console.log('Llega a buscar con id de cliente ' + idCliente + palabra);
+    console.log('Llega al web service de prductos a  buscar con id de cliente ' + idCliente + palabra);
     let url = URL_SERVICIOS + '/producto?codigoCliente=' + idCliente + '&palabra=' + palabra.toUpperCase();
+    console.log(url);
     return this.http.get(url).pipe(
       catchError(
         err => {
@@ -19,9 +20,5 @@ export class ProductosService {
           return Observable.throw(err);
         }
     ));
-  }
-
-  buscarProductosPorPalabra(termino: string) {
-    console.log(termino);
   }
 }

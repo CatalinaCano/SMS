@@ -197,7 +197,14 @@ export class FormularioComponent implements OnInit {
   llenarProductos(termino: string) {
     this.nombre_producto = termino;
     this.opcionesProducto = true;
-    this._productosService.buscarProductosPorPalabra(termino);
+    this._productosService.buscarProductosPorCliente(this.cod_cliente, this.nombre_producto)
+        .subscribe(res => {
+          this.productos = JSON.parse(JSON.stringify(res));
+          if (this.productos.length === 0) {
+            swal('No existen Productos', 'No existen Productos con ese parametro de búsqueda', 'warning');
+            this.opcionesProducto = false;
+          }
+        }, error => console.log(error));
   }
 
 }
