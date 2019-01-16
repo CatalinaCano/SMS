@@ -9,9 +9,9 @@ import swal from 'sweetalert2';
 export class ProductosService {
   constructor( public http: HttpClient) { }
 
-  buscarProductosPorCliente ( idCliente: string) {
-    console.log('Llega a buscar con id de cliente ' + idCliente );
-    let url = URL_SERVICIOS + '/producto?codigoCliente=' + idCliente;
+  buscarProductosPorCliente ( idCliente: string, palabra: string) {
+    console.log('Llega a buscar con id de cliente ' + idCliente + palabra);
+    let url = URL_SERVICIOS + '/producto?codigoCliente=' + idCliente + '&palabra=' + palabra.toUpperCase();
     return this.http.get(url).pipe(
       catchError(
         err => {

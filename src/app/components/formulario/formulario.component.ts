@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { OrdenesService } from '../../services/ordenes.service';
 import { Ordenes } from '../../interfaces/ordenes.interface';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
@@ -19,7 +19,6 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./formulario.component.css', './formulario.component.scss']
 })
 export class FormularioComponent implements OnInit {
-
 
 
   formulario: FormGroup;
@@ -45,7 +44,7 @@ export class FormularioComponent implements OnInit {
   cod_proveedor: string;
   cod_cliente: string;
   cod_producto: string;
-  nombre_producto: string;
+  nombre_producto = ' ';
   archivoEntrada: File;
   archivoEntradaTemp;
 
@@ -65,6 +64,8 @@ export class FormularioComponent implements OnInit {
       'numeroOrden': new FormControl( '', [Validators.required, Validators.minLength(6), MyValidators.validarLongitudOrden ])
     });
    }
+
+
   /*
     El ngOnInit se utiliza cuando la pagina ya esta renderizada, primero se ejecuta el constructor
   */
@@ -123,7 +124,7 @@ export class FormularioComponent implements OnInit {
     this.cod_cliente = idCliente.toString();
     (<HTMLInputElement> document.getElementById('cliente')).disabled = true;
     this.buscarCliente = false;
-    this._productosService.buscarProductosPorCliente(this.cod_cliente)
+    this._productosService.buscarProductosPorCliente(this.cod_cliente, this.nombre_producto)
         .subscribe(res => {
           this.productos = JSON.parse(JSON.stringify(res));
         }, error => console.log(error));
@@ -135,6 +136,7 @@ export class FormularioComponent implements OnInit {
     this.buscarProducto = false;
     this.mostrarNombreArchivo = true;
     console.log('Codigo del Producto: ' + this.cod_producto);
+    console.log('Codigo del cliente: ' + this.cod_cliente);
 
   }
 
@@ -181,6 +183,12 @@ export class FormularioComponent implements OnInit {
         .subscribe(
           res => {
             this.clientes = JSON.parse(JSON.stringify(res));
+            if (this.clientes.length === 0) {
+              swal('No existen Clientes', 'No existen clientes con ese parametro de búsqueda', 'warning');
+              this.opcionesCliente = false;
+              //this.forma.patchValue({cliente: ' '});
+            }
+            console.log(this.clientes);
           }, err => console.log(err));
     this.opcionesCliente = true;
   }
