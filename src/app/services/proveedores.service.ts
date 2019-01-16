@@ -11,20 +11,7 @@ export class ProveedoresService {
     {
       CODIGO_PROVEDOR: '2',
       RAZON_SOCIAL_PROVEDOR : 'INFOBIP'
-  },
-  {
-    CODIGO_PROVEDOR: '3',
-    RAZON_SOCIAL_PROVEDOR : 'INFOBIP1'
-},
-{
-  CODIGO_PROVEDOR: '4',
-  RAZON_SOCIAL_PROVEDOR : 'INFOBIP2'
-},
-{
-  CODIGO_PROVEDOR: '5',
-  RAZON_SOCIAL_PROVEDOR : 'INFOBIP3'
-}
-
+  }
 ];
 
   constructor() {

@@ -1,0 +1,10 @@
+ALTER  PROCEDURE [dbo].[SP_OBTENER_NOMBRE_FILE_URL]
+
+@url nvarchar(255),
+@nombreArchivo nvarchar(255) OUTPUT
+AS
+SET @nombreArchivo = (SELECT reverse(left(reverse(@url), charindex('/', reverse(@url)) -1)) )
+SELECT @nombreArchivo AS NombreArchivo
+
+== NOMBER ARCHIVO SSIS ====
+SUBSTRING(DC_PATH_IMAGEN,LEN(DC_PATH_IMAGEN) - FINDSTRING(REVERSE(DC_PATH_IMAGEN),"/",1) + 2,LEN(DC_PATH_IMAGEN))
