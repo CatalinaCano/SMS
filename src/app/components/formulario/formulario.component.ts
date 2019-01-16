@@ -12,6 +12,9 @@ import { ProductosService } from '../../services/productos.service';
 import { Producto } from '../../interfaces/producto.interface';
 import { SubirArchivoService } from 'src/app/services/subir-archivo.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import {ReplaySubject} from 'rxjs/ReplaySubject';
+import {Observable} from 'rxjs/Observable';
+
 
 @Component({
   selector: 'app-formulario',
@@ -41,6 +44,7 @@ export class FormularioComponent implements OnInit {
   proveedores: Proveedores[] = [];
   productos: Producto[] = [];
 
+  textoArchivo64: any;
   numero_orden: string;
   cod_proveedor: string;
   cod_cliente: string;
@@ -49,7 +53,8 @@ export class FormularioComponent implements OnInit {
   archivoEntrada: File;
   archivoEntradaTemp;
 
-  fileName: string;
+
+  nombreArchivo: string;
   filePreview: string;
   selectedProveedorId;
   deshabilitarProveedor = false;
@@ -71,7 +76,6 @@ export class FormularioComponent implements OnInit {
     El ngOnInit se utiliza cuando la pagina ya esta renderizada, primero se ejecuta el constructor
   */
   ngOnInit() {
-    this.proveedores = this._provedoresService.getProvedores();
     this.forma = new FormGroup({
       'proveedor': new FormControl('', Validators.required),
       'cliente': new FormControl('', Validators.required),
@@ -121,12 +125,12 @@ export class FormularioComponent implements OnInit {
 
   clienteSeleccionado(idCliente: number) {
     this.cod_cliente = idCliente.toString();
-    (<HTMLInputElement> document.getElementById('cliente')).disabled = true;
-    this.buscarCliente = false;
     this._productosService.buscarProductosPorCliente(this.cod_cliente, this.nombre_producto)
         .subscribe(res => {
           this.productos = JSON.parse(JSON.stringify(res));
         }, error => console.log(error));
+        (<HTMLInputElement> document.getElementById('cliente')).disabled = true;
+        this.buscarCliente = false;
   }
 
   productoSeleccionado(idProducto: number) {
@@ -153,25 +157,43 @@ export class FormularioComponent implements OnInit {
       return;
     }
 
-
+    this.nombreArchivo = this.cod_cliente + '_' + this.cod_producto + '_' + this.numero_orden;
     this.archivoEntrada = archivo;
+    let base64Observable = new ReplaySubject(1);
+    let fileReader = new FileReader();
+    fileReader.readAsDataURL(this.archivoEntrada);
+    fileReader.onload = event => {
+      base64Observable.next(fileReader.result);
+  };
 
-    let reader = new FileReader();
-    let urlArchivoTemp = reader.readAsDataURL(archivo);
+  //console.log(Object.keys(base64Observable));
 
-    //reader.onloadend = () => this.archivoEntradaTemp = reader.result;
-    reader.onload = () => {
-     this.fileName = archivo.name + ' ' + archivo.type;
-     this.filePreview = 'data:text' + ';base64,' + reader.result;
-   };
-  }
-
-  sanitize(url: string) {
-    return this.sanitizer.bypassSecurityTrustUrl(url);
+  base64Observable.subscribe(res =>
+    // this.textoArchivo64 = JSON.parse(JSON.stringify(res))
+    this._subirArchivo.subirArchivo(this.cod_proveedor, this.nombreArchivo, res)
+                      .subscribe(
+                        res => {  swal('Registro exitoso...', 'El Archivo se almaceno con éxito', 'success');
+                                  this.limpiar();
+                       }, err => {
+                        swal('Error', 'Error al subir Archivo', 'error');
+                        this.limpiar();
+                       }
+                       ));
   }
 
   llenarProveedor(termino: string) {
     console.log(termino);
+    this._provedoresService.buscarProveedores(termino)
+      .subscribe(
+        res => {
+           this.proveedores = JSON.parse(JSON.stringify(res));
+           if (this.proveedores.length === 0) {
+            swal('No existen Proveedores', 'No existen Proveedores con ese parametro de búsqueda', 'warning');
+            (<HTMLInputElement>document.getElementById('textoProveedor')).value = '';
+            this.opcionesProveedor = false;
+           }
+        }, err => console.log(err));
+
     this.opcionesProveedor = true;
 
   }
@@ -183,10 +205,9 @@ export class FormularioComponent implements OnInit {
             this.clientes = JSON.parse(JSON.stringify(res));
             if (this.clientes.length === 0) {
               swal('No existen Clientes', 'No existen clientes con ese parametro de búsqueda', 'warning');
-              (<HTMLInputElement>document.getElementById('textoCliente')).value = '   ';
+              (<HTMLInputElement>document.getElementById('textoCliente')).value = '';
               this.opcionesCliente = false;
             }
-            console.log(this.clientes);
           }, err => console.log(err));
     this.opcionesCliente = true;
   }
@@ -194,16 +215,16 @@ export class FormularioComponent implements OnInit {
 
   llenarProductos(termino: string) {
     this.nombre_producto = termino;
-    this.opcionesProducto = true;
     this._productosService.buscarProductosPorCliente(this.cod_cliente, this.nombre_producto)
         .subscribe(res => {
           this.productos = JSON.parse(JSON.stringify(res));
           if (this.productos.length === 0) {
             swal('No existen Productos', 'No existen Productos con ese parametro de búsqueda', 'warning');
-            (<HTMLInputElement>document.getElementById('textoProducto')).value = '   ';
+            (<HTMLInputElement>document.getElementById('textoProducto')).value = '';
             this.opcionesProducto = false;
           }
         }, error => console.log(error));
+        this.opcionesProducto = true;
   }
 
 }

@@ -1,4 +1,4 @@
 export interface Proveedores {
-    CODIGO_PROVEDOR: string;
-    RAZON_SOCIAL_PROVEDOR: string;
+    nombreProveedor: string;
+    codigoProveedor: string;
 }

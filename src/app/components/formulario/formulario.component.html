@@ -50,7 +50,7 @@
                     <div *ngIf="opcionesProveedor">
                         <select id="proveedor" class="form-control" required formControlName="proveedor" (change)=" proveedorSeleccionado($event.target.value)">         
                             <option value="0">Selecciona un Proveedor</option>                                             
-                            <option *ngFor="let p of proveedores"  [attr.value]="p.CODIGO_PROVEDOR" >{{p.RAZON_SOCIAL_PROVEDOR | uppercase}}</option>      
+                            <option *ngFor="let p of proveedores"  [attr.value]="p.codigoProveedor" >{{p.nombreProveedor | uppercase}}</option>      
                         </select>
 
                         <div *ngIf="forma.controls['proveedor'].errors?.required" class=" form-control-feedback alert alert-danger">
@@ -97,19 +97,12 @@
                 <div class="form-group col-md-6 file-path-wrapper">
                     <label for="archivo"><i class="fas fa-align-justify"></i> Archivo</label>
                     <div class="input-group">
-                        <!--<div class="custom-file">
-                            <input type="file" class="custom-file-input" id="archivo" aria-describedby="archivo">
-                            <label class="custom-file-label" for="archivo">Seleccionar Archivo</label>
-                        </div>-->
-
                         <div class="card">
                             <div class="card-body" align="center">
                                 <h4 class="card-title text-primary"> <i class="fas fa-folder-open"></i> Archivo a Subir </h4>
-                                <label for="input-file-now">Selecciona el Archivo txt a subir</label>
+                                <label for="input-file-now">Selecciona el Archivo .txt a subir</label>
+
                                 <input #archivo (change)="seleccionArchivo($event.target.files[0])" type="file" id="archivo" accept="text/plain" class="dropify" required formControlName="archivo" />
-                                <div class="info" *ngIf="filePreview">
-                                    <img [src]="sanitize(filePreview)" />
-                                </div>
                             </div>
                         </div>
                     </div>

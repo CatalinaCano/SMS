@@ -1,24 +1,26 @@
 import { Injectable } from '@angular/core';
-import { Proveedores } from '../interfaces/proveedores.interface';
+import { HttpClient } from '@angular/common/http';
+import { URL_SERVICIOS } from '../config/config';
+import { Observable } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import swal from 'sweetalert2';
 
 @Injectable()
 export class ProveedoresService {
-  private proveedores: Proveedores[] = [
-    {
-        CODIGO_PROVEDOR: '1',
-        RAZON_SOCIAL_PROVEDOR : 'MASIVIAN'
-    },
-    {
-      CODIGO_PROVEDOR: '2',
-      RAZON_SOCIAL_PROVEDOR : 'INFOBIP'
-  }
-];
 
-  constructor() {
+  constructor(public http: HttpClient ) {
     console.log('Servicio listo para usarse');
    }
 
-   getProvedores() {
-     return this.proveedores;
-   }
+   buscarProveedores( termino: string) {
+    let url = URL_SERVICIOS + '/proveedor?palabra=' + termino.toUpperCase();
+     console.log('URL a consultar' + url);
+     return this.http.get(url).pipe(
+       catchError(
+         err => {
+           swal('Error', 'Error al cargar Proveedores', 'error');
+           return Observable.throw(err);
+         }
+       ));
+  }
 }
