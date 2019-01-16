@@ -17,7 +17,6 @@ export class ClientesService {
 
    buscarClientes( termino: string) {
      let url = URL_SERVICIOS + '/consultar?palabra=' + termino.toUpperCase();
-      console.log('URL a consultar' + url);
       return this.http.get(url).pipe(
         catchError(
           err => {

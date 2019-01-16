@@ -44,15 +44,12 @@ export class FormularioComponent implements OnInit {
   proveedores: Proveedores[] = [];
   productos: Producto[] = [];
 
-  textoArchivo64: any;
   numero_orden: string;
   cod_proveedor: string;
   cod_cliente: string;
   cod_producto: string;
   nombre_producto = ' ';
   archivoEntrada: File;
-  archivoEntradaTemp;
-
 
   nombreArchivo: string;
   filePreview: string;
@@ -108,7 +105,6 @@ export class FormularioComponent implements OnInit {
   }
 
   subirArchivo() {
-    console.log(this.cod_cliente);
     swal('Registro exitoso...', 'Subiendo Archivo', 'success');
     this.limpiar();
 
@@ -116,11 +112,8 @@ export class FormularioComponent implements OnInit {
 
  proveedorSeleccionado(idProveedor: number) {
     this.cod_proveedor = idProveedor.toString();
-    console.log('El codigo del proveedor es: ' + this.cod_proveedor);
     this.buscarProveedor = false;
     (<HTMLInputElement> document.getElementById('proveedor')).disabled = true;
-    console.log('Codigo del Proveedor: ' + this.cod_proveedor);
-
   }
 
   clienteSeleccionado(idCliente: number) {
@@ -182,7 +175,6 @@ export class FormularioComponent implements OnInit {
   }
 
   llenarProveedor(termino: string) {
-    console.log(termino);
     this._provedoresService.buscarProveedores(termino)
       .subscribe(
         res => {

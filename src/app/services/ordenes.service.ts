@@ -1,5 +1,10 @@
 import { Injectable } from '@angular/core';
+import { URL_SERVICIOS } from '../config/config';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import {  catchError } from 'rxjs/operators';
+import swal from 'sweetalert2';
+
 
 
 @Injectable()
@@ -7,9 +12,15 @@ export class OrdenesService {
 
 
   constructor(public http: HttpClient) {}
+
    obtenerDatosOrden( numeroOrden: string) {
-       console.log('llego al servicio con parametro ' + numeroOrden);
+       let url = URL_SERVICIOS + '/validarOrden?numero=' + numeroOrden;
+       return this.http.get(url).pipe(
+        catchError(
+          err => {
+            swal('Error', 'Error al buscar el numero de orden', 'error');
+            return Observable.throw(err);
+          }
+      ));
    }
-
-
 }

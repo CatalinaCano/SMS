@@ -8,13 +8,10 @@ import swal from 'sweetalert2';
 @Injectable()
 export class ProveedoresService {
 
-  constructor(public http: HttpClient ) {
-    console.log('Servicio listo para usarse');
-   }
+  constructor(public http: HttpClient ) {}
 
    buscarProveedores( termino: string) {
     let url = URL_SERVICIOS + '/proveedor?palabra=' + termino.toUpperCase();
-     console.log('URL a consultar' + url);
      return this.http.get(url).pipe(
        catchError(
          err => {
