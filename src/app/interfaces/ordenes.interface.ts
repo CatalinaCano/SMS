@@ -1,5 +1,5 @@
 
 
 export  interface Ordenes {
-    NUMERO_ORDEN: string;
+    numOrden: string;
 }

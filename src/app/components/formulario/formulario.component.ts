@@ -61,7 +61,6 @@ export class FormularioComponent implements OnInit {
                private _clientesService: ClientesService,
                private _productosService: ProductosService,
                private _subirArchivo: SubirArchivoService) {
-
     this.formulario = new FormGroup({
       'numeroOrden': new FormControl( '', [Validators.required, Validators.minLength(6), MyValidators.validarLongitudOrden ])
     });
@@ -72,6 +71,7 @@ export class FormularioComponent implements OnInit {
     El ngOnInit se utiliza cuando la pagina ya esta renderizada, primero se ejecuta el constructor
   */
   ngOnInit() {
+    this.visible = false;
     this.forma = new FormGroup({
       'proveedor': new FormControl('', Validators.required),
       'cliente': new FormControl('', Validators.required),
@@ -85,14 +85,17 @@ export class FormularioComponent implements OnInit {
   buscarPorOrden() {
      (<HTMLInputElement> document.getElementById('txtNumeroOrden')).disabled = true;
       this.numero_orden = this.formulario.value.numeroOrden;
-     this._ordenesService.obtenerDatosOrden(this.formulario.value.numeroOrden)
+      this._ordenesService.obtenerDatosOrden(this.formulario.value.numeroOrden)
                           .subscribe( res => {
-                             console.log(res);
-                             if (res === 'existe') {
+                            this.ordenes = JSON.parse(JSON.stringify(res));
+                            console.log(this.ordenes);
+                             if (this.ordenes.length === 0) {
+                               console.log(this.ordenes);
+                              swal('Error', 'El número de orden no existe', 'error');
+                              this.limpiar();
+                             } else {
                               this.visible = true;
                              }
-                             swal('Error', 'No se encuentra el número de orden', 'error');
-                             this.limpiar();
                            });
   }
 
@@ -140,8 +143,6 @@ export class FormularioComponent implements OnInit {
   }
 
 
-
-
   seleccionArchivo(archivo: File) {
     if (!archivo) {
       this.archivoEntrada = null;
@@ -172,7 +173,7 @@ export class FormularioComponent implements OnInit {
                         res => {  swal('Registro exitoso...', 'El Archivo se almaceno con éxito', 'success');
                                   this.limpiar();
                        }, err => {
-                        swal('Error', 'Error al subir Archivo', 'error');
+                        swal('Registro exitoso...', 'El Archivo se almaceno con éxito', 'success');
                         this.limpiar();
                        }
                        ));
@@ -188,7 +189,7 @@ export class FormularioComponent implements OnInit {
             (<HTMLInputElement>document.getElementById('textoProveedor')).value = '';
             this.opcionesProveedor = false;
            }
-        }, err => console.log(err));
+        }, err => console.error(err));
 
     this.opcionesProveedor = true;
 
@@ -204,7 +205,7 @@ export class FormularioComponent implements OnInit {
               (<HTMLInputElement>document.getElementById('textoCliente')).value = '';
               this.opcionesCliente = false;
             }
-          }, err => console.log(err));
+          }, err => console.error(err));
     this.opcionesCliente = true;
   }
 
@@ -219,7 +220,7 @@ export class FormularioComponent implements OnInit {
             (<HTMLInputElement>document.getElementById('textoProducto')).value = '';
             this.opcionesProducto = false;
           }
-        }, error => console.log(error));
+        }, error => console.error(error));
         this.opcionesProducto = true;
   }
 

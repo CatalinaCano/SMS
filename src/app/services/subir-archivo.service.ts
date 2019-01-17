@@ -14,7 +14,7 @@ export class SubirArchivoService {
 
     let contenidoArchivo = base64.replace('data:text/plain;base64,', '');
     let url = URL_SERVICIOS + '/cargar?ruta=' + codProveedor + '&nombre=' + nombreArchivo + '&contenido=' + contenidoArchivo;
-    return this.http.post(url, {codProveedor, nombreArchivo, contenidoArchivo })
+    return this.http.get(url)
                 .map((resp: any) => {
                   console.log('se guardo con exito el archivo ' + resp);
                 });

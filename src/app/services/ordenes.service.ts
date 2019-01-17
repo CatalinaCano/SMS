@@ -15,12 +15,13 @@ export class OrdenesService {
 
    obtenerDatosOrden( numeroOrden: string) {
        let url = URL_SERVICIOS + '/validarOrden?numero=' + numeroOrden;
+       console.log(url);
        return this.http.get(url).pipe(
         catchError(
           err => {
-            swal('Error', 'Error al buscar el numero de orden', 'error');
+            swal('Error', 'Error al validar el número de orden', 'error');
             return Observable.throw(err);
           }
-      ));
+        ));
    }
 }
