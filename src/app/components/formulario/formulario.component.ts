@@ -44,15 +44,14 @@ export class FormularioComponent implements OnInit {
   proveedores: Proveedores[] = [];
   productos: Producto[] = [];
 
-  numero_orden: string;
-  cod_proveedor: string;
-  cod_cliente: string;
-  cod_producto: string;
+  numero_orden: string = undefined;
+  cod_proveedor: string = undefined;
+  cod_cliente: string = undefined;
+  cod_producto: string = undefined;
   nombre_producto = ' ';
   archivoEntrada: File;
 
   nombreArchivo: string;
-  filePreview: string;
   selectedProveedorId;
   deshabilitarProveedor = false;
 
@@ -109,6 +108,10 @@ export class FormularioComponent implements OnInit {
     this.opcionesCliente = false;
     this.buscarProducto = true;
     this.opcionesProducto = false;
+    this.numero_orden = undefined;
+    this.cod_proveedor = undefined;
+    this.cod_cliente = undefined;
+    this.cod_producto = undefined;
     (<HTMLInputElement> document.getElementById('txtNumeroOrden')).disabled = false;
     this.formulario.reset();
     this.forma.reset();
