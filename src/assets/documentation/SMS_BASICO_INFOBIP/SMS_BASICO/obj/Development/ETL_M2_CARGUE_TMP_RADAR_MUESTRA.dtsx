@@ -1,0 +1,1807 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/17/2018 1:41:59 PM"
+  DTS:CreationName="SSIS.Package.3"
+  DTS:CreatorComputerName="WCOBOGCODLE1FX"
+  DTS:CreatorName="CORPCOMPUTEC\crodriguez"
+  DTS:DTSID="{EFA4348D-49F8-42D0-863B-64BCA79B61C8}"
+  DTS:ExecutableType="SSIS.Package.3"
+  DTS:LastModifiedProductVersion="11.0.5583.0"
+  DTS:LocaleID="3082"
+  DTS:ObjectName="ETL_M2_CARGUE_TMP_RADAR_MUESTRA"
+  DTS:PackageType="5"
+  DTS:VersionBuild="64"
+  DTS:VersionGUID="{D579078C-69FB-4388-8C50-F2B2E0FC9558}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">6</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[CORREO]"
+      DTS:CreationName="SMTP"
+      DTS:DTSID="{0489879C-7196-48D7-B5B6-56DDC0AA8E19}"
+      DTS:ObjectName="CORREO">
+      <DTS:ObjectData>
+        <SmtpConnectionManager
+          ConnectionString="SmtpServer=172.16.120.18;UseWindowsAuthentication=False;EnableSsl=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[intdbp1.DB_TRANSACCIONAL]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{54BF02B1-26B8-4BB2-ACDC-B7613363A7A8}"
+      DTS:ObjectName="intdbp1.DB_TRANSACCIONAL">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=INTDBP1;Initial Catalog=DB_TRANSACCIONAL;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[RADARDB.desarrollo]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A19BDCD5-67BA-4B5F-8183-B55972C644D7}"
+      DTS:ObjectName="RADARDB.desarrollo">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=RADARDB;User ID=db2inst1;Provider=IBMOLEDB.DB2COPY1;Persist Security Info=True;Location=172.24.1.158:50001;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAQexDmVn6w0WA4jGv61moZQAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADudH1l48bBI/BFXAjB5rVOPcXVpeBHsS3tcZ4QjDjXVQAAAAAOgAAAAAIAACAAAAB64+vlcxK5IDRVOFbJxoddM+WqqmAyxQJLtB8EVNun3iAAAAB7AD23ADcK843Yau33n/FbVjwNuJYBdGdFNpPYPEeI/UAAAAB23esJ58jKQPv03laK+gSS3uf1aYx7Kym2Ry/O7/tBQjpvL8vHVU8U295le4PoR8R3Z9IN7hxkboYBGwaDDua5</DTS:Password>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP"
+      DTS:CreationName="SSIS.Pipeline.3"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{3A18C767-0D84-4050-AFC5-2C0C81C37E5A}"
+      DTS:ExecutableType="SSIS.Pipeline.3"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE"
+              componentClassID="{62B1106C-7DB8-4EC8-ADD6-4C664DFFC54A}"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="DC_DATOS_UNICODE"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Inputs[Data Conversion Input].Columns[telefono]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="telefono"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[telefono]" />
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Inputs[Data Conversion Input].Columns[messageid]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="messageid"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[messageid]" />
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Inputs[Data Conversion Input].Columns[messagedata]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="600"
+                      cachedName="messagedata"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[messagedata]" />
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Inputs[Data Conversion Input].Columns[url_pag]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="600"
+                      cachedName="url_pag"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[url_pag]" />
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Inputs[Data Conversion Input].Columns[tipo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="tipo"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[tipo]" />
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Inputs[Data Conversion Input].Columns[sms]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="600"
+                      cachedName="sms"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[sms]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of telefono]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of telefono]"
+                      name="Copy of telefono"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[telefono]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of messageid]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of messageid]"
+                      name="Copy of messageid"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[messageid]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of messagedata]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="600"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of messagedata]"
+                      name="Copy of messagedata"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[messagedata]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of url_pag]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="600"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of url_pag]"
+                      name="Copy of url_pag"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[url_pag]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of tipo]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of tipo]"
+                      name="Copy of tipo"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[tipo]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of sms]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="600"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of sms]"
+                      name="Copy of sms"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[sms]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO"
+              componentClassID="{49928E82-9C4E-49F0-AABE-3812B82707EC}"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="DC_ORDEN_PROCESO_CLIENTE_PRODUCTO"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Inputs[Derived Column Input].Columns[NombreArhivo]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="250"
+                      cachedName="NombreArhivo"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[NombreArhivo]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output].Columns[ORDEN_PROCESO]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output].Columns[ORDEN_PROCESO]"
+                      name="ORDEN_PROCESO"
+                      precision="18"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_NUMERIC,18,0)[SUBSTRING](#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[NombreArhivo]},[FINDSTRING](#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[NombreArhivo]},"_",2) + 1,[LEN](#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[NombreArhivo]}))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_NUMERIC,18,0)SUBSTRING(NombreArhivo,FINDSTRING(NombreArhivo,"_",2) + 1,LEN(NombreArhivo))</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output].Columns[CODIGO_CLIENTE]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output].Columns[CODIGO_CLIENTE]"
+                      name="CODIGO_CLIENTE"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I2)[SUBSTRING](#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[NombreArhivo]},1,[FINDSTRING](#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[NombreArhivo]},"_",1) - 1)</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I2)SUBSTRING(NombreArhivo,1,FINDSTRING(NombreArhivo,"_",1) - 1)</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output].Columns[CODIGO_PRODUCTO]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output].Columns[CODIGO_PRODUCTO]"
+                      name="CODIGO_PRODUCTO"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_I2)[SUBSTRING](#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[NombreArhivo]},[FINDSTRING](#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[NombreArhivo]},"_",1) + 1,([FINDSTRING](#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[NombreArhivo]},"_",2) - 1) - [FINDSTRING](#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[NombreArhivo]},"_",1))</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_I2)SUBSTRING(NombreArhivo,FINDSTRING(NombreArhivo,"_",1) + 1,(FINDSTRING(NombreArhivo,"_",2) - 1) - FINDSTRING(NombreArhivo,"_",1))</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP"
+              componentClassID="{165A526D-D5DE-47FF-96A6-F8274C19826B}"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TBL_LOG_ENVIO_SMS]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select actions,statuscode,statusmessage,messageid,recipient,messagetype,messagedata,NombreArhivo,telefono,sms,url_pag,fecha_sistema,
+action_get,messageid_get,status_get,fecha_envio_get,tipo
+from  TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[intdbp1.DB_TRANSACCIONAL]"
+                  connectionManagerRefId="Package.ConnectionManagers[intdbp1.DB_TRANSACCIONAL]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[actions]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[actions]"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[actions]"
+                      name="actions"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[statuscode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[statuscode]"
+                      length="5"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[statuscode]"
+                      name="statuscode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[statusmessage]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[statusmessage]"
+                      length="250"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[statusmessage]"
+                      name="statusmessage"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[messageid]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[messageid]"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[messageid]"
+                      name="messageid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[recipient]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[recipient]"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[recipient]"
+                      name="recipient"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[messagetype]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[messagetype]"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[messagetype]"
+                      name="messagetype"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[messagedata]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[messagedata]"
+                      length="600"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[messagedata]"
+                      name="messagedata"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[NombreArhivo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[NombreArhivo]"
+                      length="250"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[NombreArhivo]"
+                      name="NombreArhivo"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[telefono]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[telefono]"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[telefono]"
+                      name="telefono"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[sms]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[sms]"
+                      length="600"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[sms]"
+                      name="sms"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[fecha_sistema]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[fecha_sistema]"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[fecha_sistema]"
+                      name="fecha_sistema"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[action_get]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[action_get]"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[action_get]"
+                      name="action_get"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[messageid_get]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[messageid_get]"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[messageid_get]"
+                      name="messageid_get"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[status_get]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[status_get]"
+                      length="5"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[status_get]"
+                      name="status_get"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[fecha_envio_get]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[fecha_envio_get]"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[fecha_envio_get]"
+                      name="fecha_envio_get"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[url_pag]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[url_pag]"
+                      length="600"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[url_pag]"
+                      name="url_pag"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[tipo]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[tipo]"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[tipo]"
+                      name="tipo"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[actions]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="actions" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[statuscode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="statuscode" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[statusmessage]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="statusmessage" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[messageid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="messageid" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[recipient]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="recipient" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[messagetype]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="messagetype" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[messagedata]"
+                      codePage="1252"
+                      dataType="str"
+                      length="600"
+                      name="messagedata" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[NombreArhivo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      name="NombreArhivo" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[telefono]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="telefono" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[sms]"
+                      codePage="1252"
+                      dataType="str"
+                      length="600"
+                      name="sms" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[fecha_sistema]"
+                      dataType="dbTimeStamp"
+                      name="fecha_sistema" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[action_get]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="action_get" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[messageid_get]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="messageid_get" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[status_get]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="status_get" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[fecha_envio_get]"
+                      dataType="dbTimeStamp"
+                      name="fecha_envio_get" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[url_pag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="600"
+                      name="url_pag" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].ExternalColumns[tipo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="tipo" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[actions]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[actions]"
+                      name="actions" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[statuscode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[statuscode]"
+                      name="statuscode" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[statusmessage]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[statusmessage]"
+                      name="statusmessage" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[messageid]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[messageid]"
+                      name="messageid" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[recipient]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[recipient]"
+                      name="recipient" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[messagetype]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[messagetype]"
+                      name="messagetype" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[messagedata]"
+                      codePage="1252"
+                      dataType="str"
+                      length="600"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[messagedata]"
+                      name="messagedata" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[NombreArhivo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="250"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[NombreArhivo]"
+                      name="NombreArhivo" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[telefono]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[telefono]"
+                      name="telefono" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[sms]"
+                      codePage="1252"
+                      dataType="str"
+                      length="600"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[sms]"
+                      name="sms" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[fecha_sistema]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[fecha_sistema]"
+                      name="fecha_sistema" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[action_get]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[action_get]"
+                      name="action_get" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[messageid_get]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[messageid_get]"
+                      name="messageid_get" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[status_get]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[status_get]"
+                      name="status_get" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[fecha_envio_get]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[fecha_envio_get]"
+                      name="fecha_envio_get" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[url_pag]"
+                      codePage="1252"
+                      dataType="str"
+                      length="600"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[url_pag]"
+                      name="url_pag" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[tipo]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Error Output].Columns[tipo]"
+                      name="tipo" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP"
+              componentClassID="{4ADA7EAA-136C-4215-8098-D7A7C27FC0D1}"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">"PRODRAD"."TBL_STG_OP_SMS_MUESTRAS_INFOBIP"</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[RADARDB.desarrollo]"
+                  connectionManagerRefId="Package.ConnectionManagers[RADARDB.desarrollo]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].Columns[ORDEN_PROCESO]"
+                      cachedDataType="numeric"
+                      cachedName="ORDEN_PROCESO"
+                      cachedPrecision="18"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[NUMERO_ORDEN]"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output].Columns[ORDEN_PROCESO]" />
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].Columns[CODIGO_CLIENTE]"
+                      cachedDataType="i2"
+                      cachedName="CODIGO_CLIENTE"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[CODIGO_CLIENTE]"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output].Columns[CODIGO_CLIENTE]" />
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].Columns[CODIGO_PRODUCTO]"
+                      cachedDataType="i2"
+                      cachedName="CODIGO_PRODUCTO"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[CODIGO_PRODUCTO]"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output].Columns[CODIGO_PRODUCTO]" />
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].Columns[fecha_sistema]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="fecha_sistema"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_PROCESO]"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output].Columns[fecha_sistema]" />
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].Columns[Copy of telefono]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Copy of telefono"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[TELEFONO]"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of telefono]" />
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].Columns[Copy of messageid]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Copy of messageid"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[ID_ENVIO]"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of messageid]" />
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].Columns[Copy of messagedata]"
+                      cachedDataType="wstr"
+                      cachedLength="600"
+                      cachedName="Copy of messagedata"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[MENSAJE]"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of messagedata]" />
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].Columns[Copy of url_pag]"
+                      cachedDataType="wstr"
+                      cachedLength="600"
+                      cachedName="Copy of url_pag"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[URL]"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of url_pag]" />
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].Columns[Copy of tipo]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="Copy of tipo"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[TIPO]"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of tipo]" />
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].Columns[Copy of sms]"
+                      cachedDataType="wstr"
+                      cachedLength="600"
+                      cachedName="Copy of sms"
+                      externalMetadataColumnId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[SMS]"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output].Columns[Copy of sms]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[NUMERO_ORDEN]"
+                      dataType="wstr"
+                      length="50"
+                      name="NUMERO_ORDEN" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[TELEFONO]"
+                      dataType="wstr"
+                      length="70"
+                      name="TELEFONO" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[CODIGO_CLIENTE]"
+                      dataType="wstr"
+                      length="50"
+                      name="CODIGO_CLIENTE" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[CODIGO_PRODUCTO]"
+                      dataType="wstr"
+                      length="50"
+                      name="CODIGO_PRODUCTO" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[FECHA_PROCESO]"
+                      dataType="dbTimeStamp"
+                      name="FECHA_PROCESO" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[MENSAJE]"
+                      dataType="wstr"
+                      length="600"
+                      name="MENSAJE" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[ID_ENVIO]"
+                      dataType="wstr"
+                      length="300"
+                      name="ID_ENVIO" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[URL]"
+                      dataType="wstr"
+                      length="600"
+                      name="URL" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[TIPO]"
+                      dataType="wstr"
+                      length="20"
+                      name="TIPO" />
+                    <externalMetadataColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input].ExternalColumns[SMS]"
+                      dataType="wstr"
+                      length="600"
+                      name="SMS" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_PRODRAD_CLIENTE"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from "PRODRAD"."CLIENTE"</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from "PRODRAD"."CLIENTE") "refTable
+where "refTable."CODIGO_CLIENTE = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CODIGO_CLIENTE" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CODIGO_TIPO_IDENTIFICACION" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NUMERO_IDENTIFICACION_CLIENTE" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RAZON_SOCIAL" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="REPRESENTANTE_LEGAL" dataType="DT_WSTR" length="40" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CODIGO_MUNICIPIO" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CODIGO_CENTROP" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DIRECCION_CLIENTE" dataType="DT_WSTR" length="60" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TELEFONO_CLIENTE" dataType="DT_WSTR" length="15" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NUMERO_CONTRATO" dataType="DT_WSTR" length="10" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FECHA_INGRESO" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ESTADO" dataType="DT_WSTR" length="1" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SECTOR_CLIENTE" dataType="DT_WSTR" length="2" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CODIGO_DEPARTAMENTO" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="COD_PAIS" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CODIGO_POSTAL" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output].Columns[CODIGO_CLIENTE]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[RADARDB.desarrollo]"
+                  connectionManagerRefId="Package.ConnectionManagers[RADARDB.desarrollo]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Inputs[Lookup Input].Columns[CODIGO_CLIENTE]"
+                      cachedDataType="i2"
+                      cachedName="CODIGO_CLIENTE"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output].Columns[CODIGO_CLIENTE]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CODIGO_CLIENTE</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO"
+              componentClassID="{671046B0-AA63-4C9F-90E4-C06E0B710CE3}"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="LKP_PRODRAD_PRODUCTO"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from "PRODRAD"."PRODUCTO"</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from "PRODRAD"."PRODUCTO") "refTable
+where "refTable."CODIGO_PRODUCTO = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="CODIGO_CLIENTE" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CODIGO_PRODUCTO" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DESCRIPCION_PRODUCTO" dataType="DT_WSTR" length="90" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CODIGO_MUNICIPIO" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CODIGO_CENTROP" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="NOMBRE_CONTACTO" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="E_MAIL" dataType="DT_WSTR" length="30" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CODIGO_EJECUTIVO_COMERCIAL" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CODIGO_ANALISTA" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CODIGO_TIPO_TRANSMISION" dataType="DT_WSTR" length="2" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FECHA_CREACION" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="FECHA_CORTE" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CODIGO_PRODUCTO_SAP" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ESTADO" dataType="DT_WSTR" length="1" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ALIAS_PRODUCTO" dataType="DT_WSTR" length="21" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="CODIGO_DEPARTAMENTO" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TAC" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="GAP" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LLAVE_CRUCE_EXISTENCIA" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BLOQUEO_COMPARATIVO" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="TIPO_COBRO" dataType="DT_WSTR" length="2" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="INSERTO_BASE" dataType="DT_I2" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output].Columns[CODIGO_PRODUCTO]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[RADARDB.desarrollo]"
+                  connectionManagerRefId="Package.ConnectionManagers[RADARDB.desarrollo]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Inputs[Lookup Input].Columns[CODIGO_PRODUCTO]"
+                      cachedDataType="i2"
+                      cachedName="CODIGO_PRODUCTO"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output].Columns[CODIGO_PRODUCTO]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">CODIGO_PRODUCTO</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Paths[Data Conversion Output]"
+              endId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Inputs[Lookup Input]"
+              name="Data Conversion Output"
+              startId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Paths[Derived Column Output]"
+              endId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Paths[Lookup Match Output]"
+              endId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Inputs[Lookup Input]"
+              name="Lookup Match Output"
+              startId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Paths[Lookup Match Output1]"
+              endId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Inputs[OLE DB Destination Input]"
+              name="Lookup Match Output"
+              startId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Paths[OLE DB Source Output]"
+              endId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:EventHandlers>
+    <DTS:EventHandler
+      DTS:refId="Package.EventHandlers[OnError]"
+      DTS:CreationName="OnError"
+      DTS:DTSID="{A711A2A0-17A1-4C92-950F-46989A82B2E8}"
+      DTS:EventID="5177415"
+      DTS:EventName="OnError"
+      DTS:LocaleID="-1">
+      <DTS:Variables>
+        <DTS:Variable
+          DTS:CreationName=""
+          DTS:Description="The propagate property of the event"
+          DTS:DTSID="{1C4F8D80-779C-475C-8605-4C078636BBC0}"
+          DTS:IncludeInDebugDump="6789"
+          DTS:Namespace="System"
+          DTS:ObjectName="Propagate">
+          <DTS:VariableValue
+            DTS:DataType="11">-1</DTS:VariableValue>
+        </DTS:Variable>
+      </DTS:Variables>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package.EventHandlers[OnError]\Send Mail Task"
+          DTS:CreationName="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:Description="Send Mail Task"
+          DTS:DTSID="{C3BDE23B-E18E-4373-B4E6-59C19BD18C61}"
+          DTS:ExecutableType="Microsoft.SqlServer.Dts.Tasks.SendMailTask.SendMailTask, Microsoft.SqlServer.SendMailTask, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Send Mail Task"
+          DTS:TaskContact="Send Mail Task; Microsoft Corporation; SQL Server 2012; © 2007 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="MessageSource">@[System::ErrorDescription] + "\n  Fecha: "+ (DT_WSTR, 30) @[System::StartTime]</DTS:PropertyExpression>
+          <DTS:PropertyExpression
+            DTS:Name="Subject">"Falló el ETL SMS: "  + @[System::PackageName] + " - Carga Gestión SMS a RADAR"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SendMailTask:SendMailTaskData
+              SendMailTask:SMTPServer="{0489879C-7196-48D7-B5B6-56DDC0AA8E19}"
+              SendMailTask:From="soportetecnico@computec.com"
+              SendMailTask:To="GD_GSSRS_TI_ADMIN@computec.com"
+              SendMailTask:Subject="Falló el ETL SMS: ETL_M2_CARGUE_TMP_RADAR_MUESTRA - Carga Gestión SMS a RADAR"
+              SendMailTask:MessageSource="&#xA;  Fecha: 10/01/2019 16:48:05" xmlns:SendMailTask="www.microsoft.com/sqlserver/dts/tasks/sendmailtask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:EventHandler>
+  </DTS:EventHandlers>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql11">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="332,42"
+          Id="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP"
+          TopLeft="219,90" />
+        <AnnotationLayout
+          Text="Extrae los registros de la tabla TBL_LOG_ENVIO_SMS &#xA;y los inserta en TBL_STG_OP_SMS_MUESTRAS_INFOBIP"
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="318,56"
+          Id="f4a7c808-0bc7-4add-8f69-b045a66782a3"
+          TopLeft="562,86" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <DtsEventHandler
+    design-time-name="Package.EventHandlers[OnError]">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package.EventHandlers[OnError]\Send Mail Task"
+          TopLeft="60,60" />
+      </GraphLayout>
+    </LayoutInfo>
+  </DtsEventHandler>
+  <TaskHost
+    design-time-name="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="294,42"
+          Id="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_ORDEN_PROCESO_CLIENTE_PRODUCTO"
+          TopLeft="194,123" />
+        <NodeLayout
+          Size="199,42"
+          Id="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE"
+          TopLeft="241,274" />
+        <NodeLayout
+          Size="358,42"
+          Id="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP"
+          TopLeft="202,40" />
+        <NodeLayout
+          Size="332,42"
+          Id="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP"
+          TopLeft="186,447" />
+        <NodeLayout
+          Size="212,42"
+          Id="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO"
+          TopLeft="235,361" />
+        <NodeLayout
+          Size="185,42"
+          Id="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\DC_DATOS_UNICODE"
+          TopLeft="242,204" />
+        <EdgeLayout
+          Id="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Paths[OLE DB Source Output]"
+          TopLeft="381,82">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-40,41"
+              Start="0,0"
+              End="-40,33.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.5"
+                    Point2="0,20.5"
+                    Point3="-4,20.5" />
+                  <mssgle:LineSegment
+                    End="-36,20.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-36,20.5"
+                    Point2="-40,20.5"
+                    Point3="-40,24.5" />
+                  <mssgle:LineSegment
+                    End="-40,33.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Paths[Lookup Match Output1]"
+          TopLeft="341,403">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="11,44"
+              Start="0,0"
+              End="11,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18"
+                    Point2="0,22"
+                    Point3="4,22" />
+                  <mssgle:LineSegment
+                    End="7,22" />
+                  <mssgle:CubicBezierSegment
+                    Point1="7,22"
+                    Point2="11,22"
+                    Point3="11,26" />
+                  <mssgle:LineSegment
+                    End="11,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-42.69138671875,27,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Paths[Lookup Match Output]"
+          TopLeft="340.75,316">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,45"
+              Start="0,0"
+              End="0,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,12.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Paths[Derived Column Output]"
+          TopLeft="337.75,165">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,39"
+              Start="0,0"
+              End="0,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP.Paths[Data Conversion Output]"
+          TopLeft="337.5,246">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,28"
+              Start="0,0"
+              End="0,20.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Extrae los registros de la tabla TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP"
+          ParentId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP"
+          FontInfo="{assembly:Null}"
+          Size="418,40"
+          Id="3f93b82a-9135-4458-b4ee-3c8b6bf909a0"
+          TopLeft="569,39" />
+        <AnnotationLayout
+          Text="Obtiene la ORDEN_PROCESO, &#xA;CODIGO_CLIENTE, CODIGO_PRODUCTO"
+          ParentId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP"
+          FontInfo="{assembly:Null}"
+          Size="244,56"
+          Id="21de5640-d4d4-4d46-9c81-ca488a2d3998"
+          TopLeft="487,113" />
+        <AnnotationLayout
+          Text="Convierte a UNICODE"
+          ParentId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP"
+          FontInfo="{assembly:Null}"
+          Size="146,40"
+          Id="7f6c44e6-e293-42c1-9896-bbf4ceab4a8d"
+          TopLeft="421,199" />
+        <AnnotationLayout
+          Text="Verifica la integridad referencial&#xA;del CLIENTE"
+          ParentId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP"
+          FontInfo="{assembly:Null}"
+          Size="199,56"
+          Id="864ba2a4-d41d-4b9d-8b4d-b973b866789e"
+          TopLeft="441,262" />
+        <AnnotationLayout
+          Text="Verifica la integridad referencial&#xA;del PRODUCTO"
+          ParentId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP"
+          FontInfo="{assembly:Null}"
+          Size="199,56"
+          Id="88001c11-1922-4f9a-9963-46614607cc7a"
+          TopLeft="445,353" />
+        <AnnotationLayout
+          Text="Inserta en la tabla &#xA;TBL_STG_OP_SMS_MUESTRAS_INFOBIP"
+          ParentId="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP"
+          FontInfo="{assembly:Null}"
+          Size="236,56"
+          Id="cf359c71-c3fd-4c2b-ac11-3302b7cce6e3"
+          TopLeft="532,435" />
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_CLIENTE">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">"PRODRAD"."CLIENTE"</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\EXTRACCION_TBL_LOG_ENVIO_MUESTRAS_SMS_INFOBIP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\INSERCION_TBL_STG_OP_SMS_MUESTRAS_INFOBIP">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF_INSERT_TBL_STG_OP_SMS_MUESTRAS_INFOBIP\LKP_PRODRAD_PRODUCTO">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">"PRODRAD"."PRODUCTO"</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
