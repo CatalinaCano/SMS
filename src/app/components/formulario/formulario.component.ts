@@ -226,7 +226,9 @@ export class FormularioComponent implements OnInit {
   }
 
   validarCampos() {
-    if (typeof(this.cod_proveedor) !== 'undefined' && typeof(this.cod_cliente) !== 'undefined' && typeof(this.cod_producto) !== 'undefined'  ){
+    if (typeof(this.cod_proveedor) !== 'undefined'
+    && typeof(this.cod_cliente) !== 'undefined'
+    && typeof(this.cod_producto) !== 'undefined') {
        return true;
     }
     return false;
