@@ -38,7 +38,6 @@ export class FormularioComponent implements OnInit {
 
   buscarProducto = true;
   opcionesProducto = false;
-  uploadArchivo = false;
 
   ordenes: Ordenes[] = [];
   clientes: Cliente[] = [];
@@ -72,12 +71,13 @@ export class FormularioComponent implements OnInit {
     El ngOnInit se utiliza cuando la pagina ya esta renderizada, primero se ejecuta el constructor
   */
   ngOnInit() {
+    console.log(this.cod_proveedor);
     this.visible = false;
     this.forma = new FormGroup({
       'proveedor': new FormControl('', Validators.required),
       'cliente': new FormControl('', Validators.required),
       'producto': new FormControl('', Validators.required),
-      'archivo': new FormControl('')
+      'archivo': new FormControl('', Validators.required)
     });
   }
 
@@ -223,6 +223,13 @@ export class FormularioComponent implements OnInit {
           }
         }, error => console.error(error));
         this.opcionesProducto = true;
+  }
+
+  validarCampos() {
+    if (typeof(this.cod_proveedor) !== 'undefined' && typeof(this.cod_cliente) !== 'undefined' && typeof(this.cod_producto) !== 'undefined'  ){
+       return true;
+    }
+    return false;
   }
 
 }
