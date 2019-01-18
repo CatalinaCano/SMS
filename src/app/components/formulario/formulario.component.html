@@ -49,7 +49,7 @@
                     </div>
                     <div *ngIf="opcionesProveedor">
                         <select id="proveedor" class="form-control" required formControlName="proveedor" (change)=" proveedorSeleccionado($event.target.value)">         
-                            <option value="0">Selecciona un Proveedor</option>                                             
+                            <option value="-1">Selecciona un Proveedor</option>                                             
                             <option *ngFor="let p of proveedores"  [attr.value]="p.codigoProveedor" >{{p.nombreProveedor | uppercase}}</option>      
                         </select>
                         <div *ngIf="forma.controls['proveedor'].errors?.required" class=" form-control-feedback alert alert-danger">
@@ -68,7 +68,7 @@
 
                     <div *ngIf="opcionesCliente">
                         <select id="cliente" class="form-control" required formControlName="cliente" (change)="clienteSeleccionado($event.target.value)">  
-                            <option value="0">Selecciona un Cliente</option>                          
+                            <option value="-1">Selecciona un Cliente</option>                          
                             <option  *ngFor="let cl of clientes"  [attr.value]="cl.codigoCliente">{{cl.razonSocial | uppercase}}</option>      
                         </select>
                         <div *ngIf="forma.controls['cliente'].errors?.required" class=" form-control-feedback alert alert-danger">
@@ -85,7 +85,7 @@
                     </div>
                     <div *ngIf="opcionesProducto">
                         <select id="producto" class="form-control" required formControlName="producto" (change)="productoSeleccionado($event.target.value)">
-                            <option value="0">Selecciona un Producto</option>                          
+                            <option value="-1">Selecciona un Producto</option>                          
                             <option *ngFor="let pr of productos" [attr.value]="pr.codigoProducto" >{{pr.descripcionProducto | uppercase}}</option>    
                         </select>
                         <div *ngIf="forma.controls['producto'].errors?.required" class=" form-control-feedback alert alert-danger">
