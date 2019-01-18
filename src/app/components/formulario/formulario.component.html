@@ -52,9 +52,8 @@
                             <option value="0">Selecciona un Proveedor</option>                                             
                             <option *ngFor="let p of proveedores"  [attr.value]="p.codigoProveedor" >{{p.nombreProveedor | uppercase}}</option>      
                         </select>
-
                         <div *ngIf="forma.controls['proveedor'].errors?.required" class=" form-control-feedback alert alert-danger">
-                            <small>*Obligatorio {{cod_proveedor}}</small>
+                            <small>*Obligatorio</small>
                         </div>
                     </div>
 
@@ -101,8 +100,10 @@
                             <div class="card-body" align="center">
                                 <h4 class="card-title text-primary"> <i class="fas fa-folder-open"></i> Archivo a Subir </h4>
                                 <label for="input-file-now">Selecciona el Archivo .txt a subir</label>
+                                <div *ngIf="forma.valid">
+                                    <input #archivo (change)="seleccionArchivo($event.target.files[0])" type="file" id="archivo" accept="text/plain" class="dropify" required formControlName="archivo" />
+                                </div>
 
-                                <input #archivo (change)="seleccionArchivo($event.target.files[0])" type="file" id="archivo" accept="text/plain" class="dropify" required formControlName="archivo" />
                             </div>
                         </div>
                     </div>

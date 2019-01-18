@@ -38,6 +38,7 @@ export class FormularioComponent implements OnInit {
 
   buscarProducto = true;
   opcionesProducto = false;
+  uploadArchivo = false;
 
   ordenes: Ordenes[] = [];
   clientes: Cliente[] = [];
@@ -76,7 +77,7 @@ export class FormularioComponent implements OnInit {
       'proveedor': new FormControl('', Validators.required),
       'cliente': new FormControl('', Validators.required),
       'producto': new FormControl('', Validators.required),
-      'archivo': new FormControl('', Validators.required)
+      'archivo': new FormControl('')
     });
   }
 
