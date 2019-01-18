@@ -11,9 +11,8 @@ import { ClientesService } from '../../services/clientes.service';
 import { ProductosService } from '../../services/productos.service';
 import { Producto } from '../../interfaces/producto.interface';
 import { SubirArchivoService } from 'src/app/services/subir-archivo.service';
-import { DomSanitizer } from '@angular/platform-browser';
 import {ReplaySubject} from 'rxjs/ReplaySubject';
-import {Observable} from 'rxjs/Observable';
+
 
 
 @Component({
@@ -24,7 +23,7 @@ import {Observable} from 'rxjs/Observable';
 export class FormularioComponent implements OnInit {
 
 
-  @ViewChild('archivo') archivo: ElementRef;
+
   formulario: FormGroup;
   forma: FormGroup;
   visible = false;
@@ -52,8 +51,7 @@ export class FormularioComponent implements OnInit {
   archivoEntrada: File;
 
   nombreArchivo: string;
-  selectedProveedorId;
-  deshabilitarProveedor = false;
+
 
   constructor( private _ordenesService: OrdenesService,
                private _provedoresService: ProveedoresService,
@@ -70,7 +68,6 @@ export class FormularioComponent implements OnInit {
     El ngOnInit se utiliza cuando la pagina ya esta renderizada, primero se ejecuta el constructor
   */
   ngOnInit() {
-    console.log(this.cod_proveedor);
     this.visible = false;
     this.forma = new FormGroup({
       'proveedor': new FormControl('', Validators.required),
