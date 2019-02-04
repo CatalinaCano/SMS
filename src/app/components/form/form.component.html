@@ -1,0 +1,47 @@
+<div class="animated bounceInRight">
+
+    <h4>Envio SMS <small>Muestras</small></h4>
+    <hr>
+    <form ngNativeValidate [formGroup]="forma" (ngSubmit)="buscarPorOrden()" novalidate="novalidate">
+
+        <div>
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Nombre</label>
+                <div class="col-8">
+
+                    <input class="form-control" type="number" placeholder="123456" formControlName="numeroOrden">
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-2 col-form-label">Apellido</label>
+                <div class="col-8">
+
+                    <input class="form-control" type="text" placeholder="Apellido">
+                </div>
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">Correo</label>
+            <div class="col-md-8">
+
+                <input class="form-control" type="email" placeholder="Correo electrónico">
+            </div>
+        </div>
+
+
+
+        <div class="form-group row">
+            <label class="col-2 col-form-label">&nbsp;</label>
+            <div class="input-group col-md-8">
+                <button type="submit" class="btn btn-outline-primary">
+                Guardar
+              </button>
+            </div>
+        </div>
+
+    </form>
+</div>

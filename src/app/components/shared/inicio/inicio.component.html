@@ -1,0 +1,32 @@
+<div class="row">
+    <h6>Bienvenido!! {{nombreUsuario}} </h6>
+</div>
+<br>
+<div class="row animated bounceInRight">
+
+    <div class="col-md-4">
+        <div class="card">
+            <h5 class="card-header text-primary"> <strong>Envio Producción SMS</strong> </h5>
+            <div class="card-body">
+                <img class="mx-auto d-block" src="assets/img/produccion.png" width="50%" alt="">
+                <br> <br>
+                <h5 class="card-title">Envio de SMS</h5>
+                <p class="card-text">Para enviar un pool de mensajes a un cliente haga clic en el Boton</p>
+                <a [routerLink]="['/produccion']" class="btn btn-primary"> <i class="fas fa-file-upload"></i> Cargar Archivo </a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="col-md-4">
+        <div class="card">
+            <h5 class="card-header text-warning"> <strong>Envio Muestras SMS</strong> </h5>
+            <div class="card-body">
+                <img class="mx-auto d-block" src="assets/img/muestras.png" width="50%" alt="">
+                <br> <br>
+                <h5 class="card-title">Envio de muestras a Cliente</h5>
+                <p class="card-text">Para enviar un pool de muestra de mensajes a un cliente haga clic en el Boton</p>
+                <a [routerLink]="['/muestras']" class="btn btn-warning"><i class="fas fa-file-upload"></i> Cargar Archivo</a>
+            </div>
+        </div>
+    </div>
+</div>
